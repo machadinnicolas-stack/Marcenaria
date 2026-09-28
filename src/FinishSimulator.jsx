@@ -6,9 +6,9 @@ const PHOTO = '/images/image-02.webp';
 const WORK_WIDTH = 900;
 
 const FINISHES = [
-  { id: 'natural', name: 'Natural', dark: [150, 116, 78], light: [236, 210, 170] },
-  { id: 'mel', name: 'Mel', dark: [120, 70, 30], light: [226, 160, 88] },
-  { id: 'nogueira', name: 'Nogueira', dark: [46, 28, 18], light: [138, 96, 66] },
+  { id: 'grafite', name: 'Grafite', dark: [52, 56, 60], light: [128, 134, 140] },
+  { id: 'branco', name: 'Branco', dark: [168, 172, 176], light: [246, 247, 247] },
+  { id: 'corten', name: 'Corten', dark: [78, 32, 14], light: [198, 100, 46] },
 ];
 
 const smooth = (a, b, x) => {
@@ -16,8 +16,8 @@ const smooth = (a, b, x) => {
   return t * t * (3 - 2 * t);
 };
 
-// Finds the wood panels by colour (warm hue, enough saturation) above the wall line, and records each pixel's
-// relative brightness so a new finish keeps the photo's grain, grooves and lighting.
+// Finds the painted steel (dark, unsaturated pixels above the wall line) and records each pixel's relative
+// brightness, so a new paint colour keeps the photo's highlights, edges and shading.
 function analyse(image) {
   const width = WORK_WIDTH;
   const height = Math.round((width * image.naturalHeight) / image.naturalWidth);
@@ -38,22 +38,24 @@ function analyse(image) {
     const g = pixels[i * 4 + 1] / 255;
     const b = pixels[i * 4 + 2] / 255;
     const max = Math.max(r, g, b);
-    const delta = max - Math.min(r, g, b);
-    const saturation = max === 0 ? 0 : delta / max;
-    let hue = 0;
-    if (delta > 0) {
-      if (max === r) hue = 60 * (((g - b) / delta) % 6);
-      else if (max === g) hue = 60 * ((b - r) / delta + 2);
-      else hue = 60 * ((r - g) / delta + 4);
-      if (hue < 0) hue += 360;
-    }
-    const hueWeight = hue >= 18 && hue <= 48 ? 1 : hue < 18 ? smooth(8, 18, hue) : 1 - smooth(48, 58, hue);
+    // Chroma rather than HSV saturation: saturation explodes on near-black pixels, chroma stays low for dark paint.
+    const chroma = max - Math.min(r, g, b);
     const y = Math.floor(i / width) / height;
-    const w = hueWeight * smooth(0.18, 0.34, saturation) * smooth(0.18, 0.3, max) * (1 - smooth(0.63, 0.7, y));
-    weight[i] = w;
+    weight[i] = (1 - smooth(0.1, 0.19, chroma)) * (1 - smooth(0.46, 0.6, max)) * (1 - smooth(0.66, 0.72, y));
     luma[i] = 0.299 * r + 0.587 * g + 0.114 * b;
-    if (w > 0.5) histogram[Math.round(luma[i] * 255)] += 1;
   }
+
+  // A 3×3 box blur on the mask removes single-pixel speckle along the beam edges.
+  const blurred = new Float32Array(count);
+  for (let y = 1; y < height - 1; y += 1) {
+    for (let x = 1; x < width - 1; x += 1) {
+      let sum = 0;
+      for (let dy = -1; dy <= 1; dy += 1) for (let dx = -1; dx <= 1; dx += 1) sum += weight[(y + dy) * width + x + dx];
+      blurred[y * width + x] = sum / 9;
+    }
+  }
+  weight.set(blurred);
+  for (let i = 0; i < count; i += 1) if (weight[i] > 0.5) histogram[Math.round(luma[i] * 255)] += 1;
 
   const total = histogram.reduce((sum, n) => sum + n, 0);
   const percentile = (p) => {
@@ -96,7 +98,7 @@ export default function FinishSimulator() {
   const cacheRef = useRef(new Map());
   const introRef = useRef(null);
   const draggingRef = useRef(false);
-  const [finishId, setFinishId] = useState('nogueira');
+  const [finishId, setFinishId] = useState('corten');
   const [position, setPosition] = useState(50);
   const [ready, setReady] = useState(false);
   const radioName = useId();
@@ -190,11 +192,11 @@ export default function FinishSimulator() {
     <section className="fs-section section-pad" id="antes-depois" ref={sectionRef} aria-labelledby={headingId}>
       <div className="fs-layout">
         <div className="fs-copy">
-          <span className="eyebrow"><span className="tiny-line" /> ANTES E DEPOIS DO ACABAMENTO</span>
-          <h2 id={headingId}>Mesmo forro.<br /><span className="muted">Outra atmosfera.</span></h2>
-          <p>Arraste a régua sobre a foto e compare. A mesma estrutura ganha outro clima só com a troca do tom da madeira.</p>
+          <span className="eyebrow"><span className="tiny-line" /> ANTES E DEPOIS DA PINTURA</span>
+          <h2 id={headingId}>Mesma estrutura.<br /><span className="muted">Outra presença.</span></h2>
+          <p>Arraste a régua sobre a foto e compare. A mesma estrutura muda de personalidade só com a cor da pintura eletrostática.</p>
           <fieldset className="fs-finishes">
-            <legend>Aplique o acabamento</legend>
+            <legend>Escolha a cor da estrutura</legend>
             <div className="fs-options">
               {FINISHES.map((item) => (
                 <label key={item.id} className={`fs-option${finishId === item.id ? ' fs-option-selected' : ''}`}>
@@ -205,7 +207,7 @@ export default function FinishSimulator() {
               ))}
             </div>
           </fieldset>
-          <p className="fs-note">Simulação ilustrativa aplicada sobre a foto real de um forro. As cores finais variam conforme o material escolhido.</p>
+          <p className="fs-note">Simulação ilustrativa aplicada sobre a foto real de uma estrutura. As cores finais seguem a cartela da pintura escolhida.</p>
         </div>
 
         <figure className="fs-figure">
@@ -218,19 +220,19 @@ export default function FinishSimulator() {
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
           >
-            <img src={PHOTO} alt="Forro amadeirado com vigas pretas, antes da troca de acabamento" width="1350" height="1800" loading="lazy" draggable="false" />
+            <img src={PHOTO} alt="Grelha de vigas metálicas pretas de um pergolado, vista de baixo, antes da troca de cor" width="1350" height="1800" loading="lazy" draggable="false" />
             <canvas ref={canvasRef} className="fs-after" aria-hidden="true" />
-            <span className="fs-chip fs-chip-before" aria-hidden="true">Antes</span>
+            <span className="fs-chip fs-chip-before" aria-hidden="true">Antes · Preto</span>
             <span className="fs-chip fs-chip-after" aria-hidden="true">Depois · {finish.name}</span>
             <div
               className="fs-handle"
               role="slider"
               tabIndex={0}
-              aria-label="Comparar antes e depois do acabamento"
+              aria-label="Comparar antes e depois da pintura"
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={Math.round(position)}
-              aria-valuetext={`${Math.round(100 - position)}% da foto com acabamento ${finish.name}`}
+              aria-valuetext={`${Math.round(100 - position)}% da foto com a estrutura em ${finish.name}`}
               onKeyDown={onKeyDown}
             >
               <span className="fs-knob" aria-hidden="true">

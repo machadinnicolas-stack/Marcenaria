@@ -3,21 +3,23 @@
 
 :root {
   font-family: 'Archivo',sans-serif;
-  color: #3b3024;
-  background: #f3eee5;
+  color: #2e3031;
+  background: #edeceb;
   font-synthesis: none;
   font-weight: 400;
-  --forest: #213c30;
-  --walnut: #2d2318;
-  --forest-dark: #221a12;
-  --cream: #f3eee5;
-  --wood: #c5966d;
-  --text: #3b3024;
-  --muted: #6b635b;
-  --line: #d9d3cc;
+  --forest: #2a2d31;
+  --graphite: #212324;
+  --corten: #c4622d;
+  --forest-dark: #191a1b;
+  --cream: #edeceb;
+  --wood: #c57e5a;
+  --text: #2e3031;
+  --muted: #626364;
+  --line: #d3d3d2;
   --ease: cubic-bezier(.22,1,.36,1);
-  --wood-veneer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='w' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014 0.0014' numOctaves='4' seed='4'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix type='matrix' values='0.192 0 0 0 0.635 0.220 0 0 0 0.439 0.208 0 0 0 0.247 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23w)'/%3E%3C/svg%3E");
-  --wood-maple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='w' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014 0.0014' numOctaves='4' seed='11'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix type='matrix' values='0.082 0 0 0 0.847 0.118 0 0 0 0.757 0.165 0 0 0 0.612 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23w)'/%3E%3C/svg%3E")
+  --steel: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='s' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0015 0.45' numOctaves='3' seed='3'/%3E%3CfeColorMatrix type='matrix' values='0.417 0 0 0 0.490 0.406 0 0 0 0.510 0.395 0 0 0 0.525 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23s)'/%3E%3C/svg%3E");
+  --steel-plate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='s' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.002 0.6' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='matrix' values='0.529 0 0 0 0.369 0.524 0 0 0 0.388 0.512 0 0 0 0.408 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23s)'/%3E%3C/svg%3E");
+  --steel-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='s' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0015 0.45' numOctaves='3' seed='8'/%3E%3CfeColorMatrix type='matrix' values='0.255 0 0 0 0.706 0.240 0 0 0 0.722 0.229 0 0 0 0.733 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23s)'/%3E%3C/svg%3E")
 }
 
 * {
@@ -68,7 +70,7 @@ button,a,input,textarea,select {
 }
 
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
-  outline: 2px solid #c5966d;
+  outline: 2px solid #c57e5a;
   outline-offset: 5px
 }
 
@@ -78,8 +80,8 @@ button {
 }
 
 ::selection {
-  background: #c5966d;
-  color: #271e14
+  background: #c57e5a;
+  color: #1c1e1f
 }
 
 h1,h2,h3,p {
@@ -117,7 +119,7 @@ button svg,a svg {
 }
 
 .muted {
-  color: #908981
+  color: #8a8987
 }
 
 .button {
@@ -148,30 +150,30 @@ button svg,a svg {
 }
 
 .button-wood {
-  color: #291f15;
-  background: #d1ad87
+  color: #1e1f20;
+  background: #cf9274
 }
 
 .button-wood:hover {
-  background: #e0c09c
+  background: #dfa487
 }
 
 .button-forest {
   background: var(--forest);
-  color: #f9f5ee
+  color: #f4f4f3
 }
 
 .button-forest:hover {
-  background: #304d3f
+  background: #3b3f44
 }
 
 .button-outline {
-  border: 1px solid #bcb6af;
+  border: 1px solid #b6b6b5;
   background: transparent
 }
 
 .button-outline:hover {
-  background: #e6e0d9
+  background: #e0e0df
 }
 
 .text-link {
@@ -181,11 +183,11 @@ button svg,a svg {
   align-items: center;
   gap: 32px;
   padding: 0 0 11px;
-  border-bottom: 1px solid #c5bfb8
+  border-bottom: 1px solid #bfbfbe
 }
 
 .text-link:hover {
-  border-color: #3b3024
+  border-color: #2e3031
 }
 
 .icon-button {
@@ -207,8 +209,8 @@ button svg,a svg {
   z-index: 500;
   top: -80px;
   left: 20px;
-  background: #faf7f1;
-  color: #2d2318;
+  background: #f6f6f5;
+  color: #212324;
   padding: 16px
 }
 
@@ -234,7 +236,7 @@ button svg,a svg {
   top: 0;
   left: 0;
   width: 100%;
-  color: #f3eee5;
+  color: #edeceb;
   z-index: 50;
   transition: background .25s,border .25s;
   border-bottom: 1px solid #ffffff14
@@ -242,7 +244,7 @@ button svg,a svg {
 
 .header-scrolled {
   position: fixed;
-  background: #2b2117f2;
+  background: #202122f2;
   backdrop-filter: blur(20px);
   height: 80px;
   box-shadow: 0 2px 20px #00000008;
@@ -270,7 +272,7 @@ button svg,a svg {
 .brand svg {
   width: 44px;
   height: 44px;
-  color: #d0ac87
+  color: #ce9274
 }
 
 .brand strong {
@@ -288,7 +290,7 @@ button svg,a svg {
 }
 
 .brand-dot {
-  color: #d0ac87
+  color: #ce9274
 }
 
 .nav {
@@ -316,7 +318,7 @@ button svg,a svg {
   left: 0;
   height: 1px;
   width: 0;
-  background: #d0ac87;
+  background: #ce9274;
   transition: width .3s
 }
 
@@ -328,7 +330,7 @@ button svg,a svg {
   display: flex;
   align-items: center;
   gap: 24px;
-  border: 1px solid #ded7c64d;
+  border: 1px solid #d4d3d04d;
   border-radius: 40px;
   padding: 12px 20px;
   font-size: 12px;
@@ -345,8 +347,8 @@ button svg,a svg {
 
 .hero {
   position: relative;
-  background: var(--walnut);
-  color: #f3eee5;
+  background: var(--graphite);
+  color: #edeceb;
   overflow: hidden
 }
 
@@ -374,7 +376,7 @@ button svg,a svg {
   position: absolute;
   inset: 0 0 auto;
   height: 460px;
-  background: radial-gradient(ellipse 48% 100% at 50% 0%,#e2b98a24,transparent 72%);
+  background: radial-gradient(ellipse 48% 100% at 50% 0%,#e3997324,transparent 72%);
   pointer-events: none;
   animation: ceilingGlow 1.8s ease .9s both
 }
@@ -408,7 +410,7 @@ button svg,a svg {
   left: 0;
   right: 0;
   height: 2.4%;
-  background: linear-gradient(180deg,#3a322a 0,#15100c 30%);
+  background: linear-gradient(180deg,#313233 0,#101011 30%);
   box-shadow: 0 6px 14px #00000059
 }
 
@@ -424,7 +426,7 @@ button svg,a svg {
   display: block;
   width: 1.75%;
   height: 100%;
-  background: linear-gradient(180deg,#0000008c 0,#00000033 16%,transparent 34%),repeating-linear-gradient(90deg,transparent 0 3px,#00000017 3px 4px),linear-gradient(90deg,#3a2616 0,#8a6440 14%,#c1925f 44%,#d6ab79 54%,#8a6440 86%,#3a2616 100%);
+  background: linear-gradient(180deg,#0000008c 0,#00000033 16%,transparent 34%),linear-gradient(90deg,#0b0c0d 0,#25282c 22%,#626a71 46%,#9aa3aa 52%,#3b4046 64%,#101113 100%);
   animation: slatOn 1.1s ease-out both;
   animation-delay: calc(max(var(--i) - 19.5, 19.5 - var(--i)) * 45ms + .25s)
 }
@@ -433,7 +435,7 @@ button svg,a svg {
   content: '';
   display: block;
   height: 100%;
-  background: linear-gradient(90deg,transparent,#ffe7c4 50%,transparent);
+  background: linear-gradient(90deg,transparent,#f2f6fa 50%,transparent);
   opacity: 0;
   animation: slatSheen 8s ease-in-out calc(var(--i) * 70ms + 3s) infinite
 }
@@ -449,7 +451,7 @@ button svg,a svg {
 }
 
 .hero-eyebrow {
-  color: #cac3bc;
+  color: #c4c3c2;
   font-size: 10px;
   letter-spacing: 2px;
   animation: enterUp .9s both
@@ -458,9 +460,9 @@ button svg,a svg {
 .status-dot {
   height: 5px;
   width: 5px;
-  background: #c6a47e;
+  background: #ca8867;
   border-radius: 50%;
-  box-shadow: 0 0 0 5px #bd987412;
+  box-shadow: 0 0 0 5px #c57d5a12;
   margin-right: 2px
 }
 
@@ -474,8 +476,8 @@ button svg,a svg {
 }
 
 .hero h1>span {
-  color: #d6b28c;
-  background: linear-gradient(100deg,#c7a17a 0%,#e9c9a8 40%,#fff5d8 49%,#d6b28c 56%,#c7a17a 100%);
+  color: #d59778;
+  background: linear-gradient(100deg,#c98665 0%,#e8ae91 40%,#eeece9 49%,#d59778 56%,#c98665 100%);
   background-size: 250% 100%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -486,7 +488,7 @@ button svg,a svg {
 .hero-copy>p {
   font-family: 'DM Sans',sans-serif;
   font-size: 15px;
-  color: #c1bcb6;
+  color: #bcbcbb;
   line-height: 1.85;
   max-width: 410px;
   animation: enterUp 1s .2s both
@@ -505,13 +507,13 @@ button svg,a svg {
   display: flex;
   align-items: center;
   gap: 15px;
-  color: #dfdad4;
+  color: #dadad9;
   padding: 16px 0;
-  border-bottom: 1px solid #aba49e3d
+  border-bottom: 1px solid #a5a5a43d
 }
 
 .hero-text-link:hover {
-  color: #e4bf94
+  color: #e4a07d
 }
 
 .hero-art {
@@ -545,7 +547,7 @@ button svg,a svg {
 .hero-photo-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg,#1a151029 0%,transparent 35%,#1a151090 100%)
+  background: linear-gradient(180deg,#14151629 0%,transparent 35%,#14151690 100%)
 }
 
 .hero-photo-label {
@@ -556,12 +558,12 @@ button svg,a svg {
   white-space: nowrap;
   padding: 7px 11px;
   border-radius: 2px;
-  background: #1a151070;
+  background: #14151670;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   font-size: 9px;
   letter-spacing: 2px;
-  color: #f1eee3
+  color: #ebeae9
 }
 
 .hero-photo-button {
@@ -570,7 +572,7 @@ button svg,a svg {
   bottom: 24px;
   height: 49px;
   width: 49px;
-  border: 1px solid #efece0a8;
+  border: 1px solid #e9e8e6a8;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -580,8 +582,8 @@ button svg,a svg {
 }
 
 .hero-photo-button:hover {
-  background: #d0ac87;
-  color: #2b2117
+  background: #ce9274;
+  color: #202122
 }
 
 .hero-photo-caption {
@@ -612,10 +614,10 @@ button svg,a svg {
   bottom: -34px;
   width: 151px;
   height: 174px;
-  background: #c49c72;
-  box-shadow: 0 12px 28px #1c150e3d;
+  background: #2c2e31;
+  box-shadow: 0 12px 28px #1415163d;
   transform: rotate(-7deg);
-  border: 6px solid #dbc4a5;
+  border: 6px solid #c9ccce;
   overflow: hidden;
   transition: transform .5s
 }
@@ -629,12 +631,12 @@ button svg,a svg {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  filter: brightness(.7) sepia(.3)
+  filter: brightness(.78) grayscale(.15)
 }
 
 .wood-sample span {
   position: absolute;
-  color: #fff4df;
+  color: #f1f0ed;
   left: 11px;
   bottom: 13px;
   z-index: 1;
@@ -648,7 +650,7 @@ button svg,a svg {
   width: 29px;
   top: 10px;
   right: 8px;
-  color: #fff4df
+  color: #f1f0ed
 }
 
 .hero-side-label {
@@ -658,7 +660,7 @@ button svg,a svg {
   writing-mode: vertical-rl;
   letter-spacing: 2px;
   font-size: 9px;
-  color: #a19a93
+  color: #9b9a99
 }
 
 .hero-bottom {
@@ -666,12 +668,12 @@ button svg,a svg {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  border-top: 1px solid #e0dad31c;
+  border-top: 1px solid #dadad91c;
   padding-top: 25px;
   margin-top: 62px;
   font-size: 12px;
   line-height: 1.7;
-  color: #b0a9a2
+  color: #aaa9a8
 }
 
 .hero-bottom>a {
@@ -679,13 +681,13 @@ button svg,a svg {
   align-items: center;
   gap: 11px;
   font-size: 13px;
-  color: #d9d3cc
+  color: #d3d3d2
 }
 
 .scroll-circle {
   display: grid;
   place-items: center;
-  border: 1px solid #b2a99f4f;
+  border: 1px solid #aaa9a74f;
   width: 35px;
   height: 35px;
   border-radius: 50%
@@ -698,7 +700,7 @@ button svg,a svg {
 
 .hero-bottom strong {
   font-weight: 400;
-  color: #d9d3cc
+  color: #d3d3d2
 }
 
 .hero-bottom-index {
@@ -709,7 +711,7 @@ button svg,a svg {
 .hero-bottom-index i {
   font-style: normal;
   margin: 0 12px;
-  color: #b5a283
+  color: #a09d99
 }
 
 .values-strip {
@@ -718,9 +720,9 @@ button svg,a svg {
   justify-content: space-around;
   padding: 24px max(5.55vw,24px);
   gap: 35px;
-  background: #e4dfd1;
-  border-bottom: 1px solid #d8d5c9;
-  color: #61584f
+  background: #dcdbd9;
+  border-bottom: 1px solid #d2d1cf;
+  color: #575859
 }
 
 .values-strip>span {
@@ -734,7 +736,7 @@ button svg,a svg {
 }
 
 .strip-star {
-  color: #a47851;
+  color: #aa613c;
   font-size: 25px;
   line-height: 1
 }
@@ -759,7 +761,7 @@ button svg,a svg {
   font-family: 'DM Sans',sans-serif;
   font-size: 14px;
   line-height: 1.9;
-  color: #6b635b;
+  color: #626364;
   padding-bottom: 4px
 }
 
@@ -787,7 +789,7 @@ button svg,a svg {
 .photo-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg,#251c1430 0%,transparent 35%,#251c1470 100%)
+  background: linear-gradient(180deg,#1b1d1e30 0%,transparent 35%,#1b1d1e70 100%)
 }
 
 .image-index {
@@ -796,10 +798,10 @@ button svg,a svg {
   left: 20px;
   padding: 7px 11px;
   border-radius: 2px;
-  background: #1a151070;
+  background: #14151670;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  color: #fff7ee;
+  color: #f8f7f5;
   font-size: 9px;
   letter-spacing: 1.5px
 }
@@ -811,25 +813,25 @@ button svg,a svg {
   align-items: center;
   height: 34px;
   width: 34px;
-  border: 1px solid #ffefdfb3;
-  background: #3b332b99;
+  border: 1px solid #f1f0edb3;
+  background: #32333499;
   backdrop-filter: blur(6px);
-  color: #fcf8e9;
+  color: #f4f3f1;
   border-radius: 50%;
   transform: translate(-50%,-50%);
-  box-shadow: 0 0 0 7px #fbf5de1f;
+  box-shadow: 0 0 0 7px #efedea1f;
   transition: background .2s,box-shadow .3s
 }
 
 .hotspot.active {
-  background: #dec09a;
-  color: #382e23;
-  border-color: #f0d8b6;
-  box-shadow: 0 0 0 9px #f1d6af33
+  background: #dca285;
+  color: #2c2e2f;
+  border-color: #d7d4cf;
+  box-shadow: 0 0 0 9px #eeb59933
 }
 
 .hotspot:hover {
-  box-shadow: 0 0 0 12px #f1d6af33
+  box-shadow: 0 0 0 12px #eeb59933
 }
 
 .hotspot::after {
@@ -844,8 +846,8 @@ button svg,a svg {
   bottom: 44px;
   left: 50%;
   transform: translateX(-50%);
-  background: #2d2318e6;
-  color: #f7efdf;
+  background: #212324e6;
+  color: #edece9;
   padding: 7px 11px;
   border-radius: 2px;
   font-size: 12px;
@@ -865,10 +867,10 @@ button svg,a svg {
   left: 20px;
   padding: 7px 12px;
   border-radius: 2px;
-  background: #1a151070;
+  background: #14151670;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  color: #f7efdf;
+  color: #edece9;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -883,11 +885,11 @@ button svg,a svg {
   display: flex;
   gap: 8px;
   padding-bottom: 31px;
-  border-bottom: 1px solid #ddd6cf
+  border-bottom: 1px solid #d7d6d5
 }
 
 .service-tabs button {
-  border: 1px solid #d1c9c1;
+  border: 1px solid #cac9c8;
   padding: 11px 20px;
   font-size: 13px;
   border-radius: 40px;
@@ -895,12 +897,12 @@ button svg,a svg {
 }
 
 .service-tabs button:hover {
-  background: #e2dbd4
+  background: #dcdbda
 }
 
 .service-tabs button.selected {
   background: var(--forest);
-  color: #f1eadc;
+  color: #e8e7e5;
   border-color: var(--forest)
 }
 
@@ -911,7 +913,7 @@ button svg,a svg {
 
 .detail-counter {
   font-size: 11px;
-  color: #a07856;
+  color: #ab613c;
   display: flex;
   gap: 20px;
   align-items: center
@@ -921,7 +923,7 @@ button svg,a svg {
   font-size: 10px;
   letter-spacing: 1.3px;
   text-transform: uppercase;
-  color: #70665c
+  color: #676665
 }
 
 .service-detail h3 {
@@ -933,7 +935,7 @@ button svg,a svg {
 
 .service-detail>p {
   font-family: 'DM Sans',sans-serif;
-  color: #6b635b;
+  color: #626364;
   font-size: 15px;
   line-height: 1.8;
   max-width: 440px
@@ -947,7 +949,7 @@ button svg,a svg {
   display: flex;
   flex-direction: column;
   gap: 11px;
-  color: #6e6358
+  color: #616365
 }
 
 .service-detail li {
@@ -957,7 +959,7 @@ button svg,a svg {
 }
 
 .service-detail li svg {
-  color: #a47d56
+  color: #ae633d
 }
 
 .service-footnote {
@@ -965,13 +967,13 @@ button svg,a svg {
   display: flex;
   gap: 12px;
   align-items: center;
-  border-top: 1px solid #ddd6cf;
+  border-top: 1px solid #d7d6d5;
   padding-top: 20px
 }
 
 .service-footnote p {
   font-size: 12px;
-  color: #70665c;
+  color: #676665;
   line-height: 1.6
 }
 
@@ -979,11 +981,12 @@ button svg,a svg {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: repeating-linear-gradient(97deg,#8c6141 0px,#c09a71 2px,#8c6141 3px,#c7a57c 8px)
+  background: radial-gradient(circle,#dfe2e4 0 3px,#7d8287 3.5px,transparent 4.5px),conic-gradient(from 20deg,#8c9196,#e1e4e6,#7d8287,#cdd0d2,#6f7479,#d8dbdd,#8c9196);
+  box-shadow: inset 0 0 0 1px #00000026
 }
 
 .projects {
-  background: #faf7f1;
+  background: #f6f6f5;
   max-width: none
 }
 
@@ -1012,7 +1015,7 @@ button svg,a svg {
 .filter-row button {
   font-size: 13px;
   padding: 10px 0 8px;
-  color: #6b635b;
+  color: #626364;
   position: relative;
   border-bottom: 1px solid transparent
 }
@@ -1023,7 +1026,7 @@ button svg,a svg {
 }
 
 .filter-row button:hover {
-  color: #3a2d21
+  color: #2c2e2f
 }
 
 .project-grid {
@@ -1045,7 +1048,7 @@ button svg,a svg {
 .project-image {
   position: relative;
   overflow: hidden;
-  background: #e6e3d6;
+  background: #dfdedd;
   aspect-ratio: 4/5;
   border-radius: 50% 50% 4px 4px / 38% 38% 4px 4px;
   isolation: isolate
@@ -1055,7 +1058,7 @@ button svg,a svg {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg,transparent 70%,#342a2038)
+  background: linear-gradient(180deg,transparent 70%,#292a2b38)
 }
 
 .project-image img {
@@ -1078,41 +1081,143 @@ button svg,a svg {
   height: 37px;
   display: grid;
   place-items: center;
-  border: 1px solid #fff3e78c;
-  color: #faf7ee;
+  border: 1px solid #f5f4f18c;
+  color: #f5f4f3;
   border-radius: 50%;
-  background: #2c221733;
+  background: #20222333;
   backdrop-filter: blur(5px);
   transition: background .2s
 }
 
 .project-card:hover .project-open {
-  background: #d8b48b;
-  color: #2d2318
+  background: #d79777;
+  color: #212324
 }
 
-.veneer {
+.cover-plate {
   display: none;
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: var(--wood-veneer) center/600px 800px;
+  background: linear-gradient(135deg,#ffffff1c,transparent 45%,#0000002e),var(--steel-plate) center/600px 800px;
   pointer-events: none
 }
 
-.veneer-on .veneer {
+.plate-on .cover-plate {
   display: block
 }
 
-.veneer-curl {
+.cut-line {
   position: absolute;
   left: -4%;
   right: -4%;
-  bottom: -13px;
-  height: 26px;
-  border-radius: 13px;
-  background: linear-gradient(180deg,#5e3f25 0%,#b0804e 28%,#f3dbb3 50%,#c79866 70%,#6d4a2e 100%);
-  box-shadow: 0 12px 18px -8px #000000a6
+  bottom: -2px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,transparent,#ff8a2a 10%,#ffe6b8 50%,#ff8a2a 90%,transparent);
+  box-shadow: 0 0 10px 2px #ff7a1acc,0 0 26px 6px #ff5a0066;
+  opacity: 0;
+  transition: opacity .2s
+}
+
+.cutting .cut-line {
+  opacity: 1
+}
+
+.sparks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0
+}
+
+.sparks i {
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 10px;
+  border-radius: 2px;
+  background: linear-gradient(180deg,#fff4d6,#ff9a3c 60%,transparent);
+  opacity: 0
+}
+
+.cutting .sparks i {
+  animation: spark .5s linear infinite
+}
+
+.sparks i:nth-child(1) {
+  left: 9%;
+  --dx: -16px;
+  --r: -24deg;
+  animation-delay: 0s
+}
+
+.sparks i:nth-child(2) {
+  left: 20%;
+  --dx: 12px;
+  --r: 18deg;
+  animation-delay: 0.12s
+}
+
+.sparks i:nth-child(3) {
+  left: 31%;
+  --dx: -8px;
+  --r: -10deg;
+  animation-delay: 0.3s
+}
+
+.sparks i:nth-child(4) {
+  left: 43%;
+  --dx: 18px;
+  --r: 26deg;
+  animation-delay: 0.05s
+}
+
+.sparks i:nth-child(5) {
+  left: 52%;
+  --dx: -20px;
+  --r: -30deg;
+  animation-delay: 0.22s
+}
+
+.sparks i:nth-child(6) {
+  left: 63%;
+  --dx: 6px;
+  --r: 8deg;
+  animation-delay: 0.38s
+}
+
+.sparks i:nth-child(7) {
+  left: 74%;
+  --dx: -12px;
+  --r: -16deg;
+  animation-delay: 0.16s
+}
+
+.sparks i:nth-child(8) {
+  left: 85%;
+  --dx: 16px;
+  --r: 22deg;
+  animation-delay: 0.28s
+}
+
+.sparks i:nth-child(9) {
+  left: 93%;
+  --dx: -6px;
+  --r: -6deg;
+  animation-delay: 0.44s
+}
+
+@keyframes spark {
+  0% {
+    opacity: 1;
+    transform: translate(0,0) rotate(var(--r))
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx),38px) rotate(var(--r))
+  }
 }
 
 .project-category {
@@ -1123,7 +1228,7 @@ button svg,a svg {
   font-size: 10px;
   letter-spacing: 1.3px;
   text-transform: uppercase;
-  background: #faf7f1ed;
+  background: #f6f6f5ed;
   padding: 7px 11px;
   border-radius: 2px
 }
@@ -1143,13 +1248,13 @@ button svg,a svg {
 
 .project-caption p {
   font-size: 13px;
-  color: #6b635b;
+  color: #626364;
   margin-top: 8px
 }
 
 .project-caption>span {
   font-size: 11px;
-  color: #7d756c;
+  color: #767573;
   margin-top: 3px
 }
 
@@ -1159,12 +1264,12 @@ button svg,a svg {
   align-items: center;
   margin-top: 55px!important;
   padding-top: 27px;
-  border-top: 1px solid #dfd9d2
+  border-top: 1px solid #d9d9d8
 }
 
 .gallery-bottom>span {
   font-size: 13px;
-  color: #6b635b;
+  color: #626364;
   letter-spacing: .2px
 }
 
@@ -1176,55 +1281,52 @@ button svg,a svg {
 
 .manifesto {
   max-width: none;
-  background: #e6e0d9;
+  background: #e0e0df;
   padding-top: 90px;
   padding-bottom: 45px;
   position: relative;
   overflow: hidden
 }
 
-.manifesto-grain {
+.manifesto-truss {
   position: absolute;
-  right: 3%;
-  bottom: -8%;
-  height: 125%;
-  width: auto;
-  aspect-ratio: 2/3;
-  color: #b1a498;
-  transform: rotate(-6deg);
+  right: 2%;
+  top: 50%;
+  width: min(40%,560px);
+  height: auto;
+  aspect-ratio: 640/420;
+  color: #a6a5a3;
+  transform: translateY(-50%);
   pointer-events: none
 }
 
-.cathedral-grain {
-  -webkit-mask-image: linear-gradient(180deg,#000 55%,transparent 94%);
-  mask-image: linear-gradient(180deg,#000 55%,transparent 94%)
-}
-
-.cathedral-grain path {
+.truss-drawing path {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.1;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 0
 }
 
-.grain-edge {
+.sheet-edge {
   position: absolute;
   left: 0;
   top: -1px;
   width: 100%;
-  height: clamp(44px,6vw,90px);
-  color: #f3eee526;
+  height: clamp(14px,2.1vw,30px);
+  color: #edeceb33;
   pointer-events: none
 }
 
-.grain-edge-bottom {
+.sheet-edge-bottom {
   top: auto;
   bottom: -1px;
-  transform: scale(-1,-1)
+  transform: scale(1,-1)
 }
 
-.grain-edge-line {
+.sheet-edge-line {
   fill: none;
   stroke: currentColor;
   stroke-width: 1;
@@ -1246,7 +1348,7 @@ button svg,a svg {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: repeating-linear-gradient(90deg,#3a2a16 0 1px,transparent 1px 60px) left bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,#3a2a16 0 1px,transparent 1px 30px) left bottom/100% 6px no-repeat,repeating-linear-gradient(90deg,#3a2a16a6 0 1px,transparent 1px 6px) left bottom/100% 3px no-repeat,linear-gradient(180deg,#ecca6a,#d4ab45);
+  background: repeating-linear-gradient(90deg,#25282b 0 1px,transparent 1px 60px) left bottom/100% 9px no-repeat,repeating-linear-gradient(90deg,#25282b 0 1px,transparent 1px 30px) left bottom/100% 6px no-repeat,repeating-linear-gradient(90deg,#25282ba6 0 1px,transparent 1px 6px) left bottom/100% 3px no-repeat,linear-gradient(180deg,#f0cc55,#d9ad2f);
   box-shadow: 0 2px 6px #0000004d;
   clip-path: inset(0 calc(100% - var(--tape) * 100%) 0 0)
 }
@@ -1256,7 +1358,7 @@ button svg,a svg {
   top: 1px;
   padding-left: 3px;
   font: 700 7.5px/1 'DM Sans',sans-serif;
-  color: #3a2a16
+  color: #25282b
 }
 
 .tape-hook {
@@ -1281,7 +1383,7 @@ button svg,a svg {
 }
 
 .manifesto>p>span {
-  color: #9a6a44
+  color: #9a5836
 }
 
 .manifesto-bottom {
@@ -1297,14 +1399,14 @@ button svg,a svg {
 .manifesto-mark {
   font-size: 62px;
   letter-spacing: -7px;
-  color: #998c7e
+  color: #8d8c8a
 }
 
 .manifesto-bottom>span:last-child {
   font-size: 10px;
   line-height: 1.9;
   letter-spacing: 1.8px;
-  color: #7c7166
+  color: #73726f
 }
 
 .floating-contact {
@@ -1315,13 +1417,13 @@ button svg,a svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #d0ad86;
-  color: #31261b;
-  border: 1px solid #ecd5b355;
+  background: #ce9273;
+  color: #242628;
+  border: 1px solid #ebb69b55;
   border-radius: 50%;
   width: 53px;
   height: 53px;
-  box-shadow: 0 4px 20px #271a0c26;
+  box-shadow: 0 4px 20px #181a1b26;
   opacity: 0;
   visibility: hidden;
   transform: translateY(12px);
@@ -1342,8 +1444,8 @@ button svg,a svg {
 .floating-contact>span {
   position: absolute;
   right: 65px;
-  background: #2d2318;
-  color: #f3eadb;
+  background: #212324;
+  color: #e9e8e5;
   padding: 10px 14px;
   font-size: 12px;
   white-space: nowrap;
@@ -1363,7 +1465,7 @@ button svg,a svg {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: #1c140cbf;
+  background: #131415bf;
   backdrop-filter: blur(8px);
   padding: 30px 20px;
   display: flex;
@@ -1378,7 +1480,7 @@ button svg,a svg {
   width: min(580px,100%);
   max-height: calc(100dvh - 60px);
   overflow-y: auto;
-  background: #faf7f1;
+  background: #f6f6f5;
   padding: 48px;
   border-radius: 4px;
   box-shadow: 0 30px 80px #0003
@@ -1390,7 +1492,7 @@ button svg,a svg {
   top: 16px;
   width: 40px;
   height: 40px;
-  border-color: #cec7bf
+  border-color: #c8c7c5
 }
 
 .modal-close svg {
@@ -1399,7 +1501,7 @@ button svg,a svg {
 
 .contact-dialog>.eyebrow {
   font-size: 10px;
-  color: #9b754e
+  color: #a25c39
 }
 
 .contact-dialog h2 {
@@ -1422,11 +1524,11 @@ button svg,a svg {
 
 .contact-dialog input,.contact-dialog select,.contact-dialog textarea {
   width: 100%;
-  background: #f1eee5;
-  border: 1px solid #ded8d1;
+  background: #ecebea;
+  border: 1px solid #d8d8d7;
   border-radius: 3px;
   padding: 13px 12px;
-  color: #3c3125;
+  color: #2f3132;
   font-size: 16px;
   line-height: 1.5;
   margin: 0 0 19px;
@@ -1434,7 +1536,7 @@ button svg,a svg {
 }
 
 .contact-dialog input::placeholder,.contact-dialog textarea::placeholder {
-  color: #9f9891
+  color: #999897
 }
 
 .contact-dialog textarea {
@@ -1449,14 +1551,14 @@ button svg,a svg {
 .demo-note {
   font-size: 11px;
   line-height: 1.7;
-  color: #9a9086;
+  color: #91908f;
   margin-top: 19px
 }
 
 .contact-result>p {
   font-size: 14px;
   margin: 10px 0 20px;
-  color: #6b635b;
+  color: #626364;
   line-height: 1.6
 }
 
@@ -1469,7 +1571,7 @@ button svg,a svg {
 .result-check {
   height: 45px;
   width: 45px;
-  background: #e8e1d9;
+  background: #e2e1df;
   border-radius: 50%;
   display: grid;
   place-items: center
@@ -1495,13 +1597,13 @@ button svg,a svg {
 
 .lightbox {
   padding: 20px;
-  background: #19120cf5
+  background: #121213f5
 }
 
 .lightbox-dialog {
   width: min(1100px,100%);
   max-height: 96dvh;
-  color: #f4efde;
+  color: #ebeae7;
   display: flex;
   flex-direction: column
 }
@@ -1518,7 +1620,7 @@ button svg,a svg {
 .lightbox-top .icon-button {
   width: 40px;
   height: 40px;
-  border-color: #716a62
+  border-color: #6b6a68
 }
 
 .lightbox-image {
@@ -1540,8 +1642,8 @@ button svg,a svg {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #261d14bb;
-  border-color: #8c8074;
+  background: #1c1d1ebb;
+  border-color: #82817e;
   z-index: 2
 }
 
@@ -1567,7 +1669,7 @@ button svg,a svg {
 
 .lightbox-bottom p {
   font-size: 13px;
-  color: #aba39b;
+  color: #a4a3a2;
   margin-top: 6px
 }
 
@@ -1577,7 +1679,7 @@ button svg,a svg {
 
 .lightbox-bottom i {
   font-style: normal;
-  color: #888078;
+  color: #81807f;
   font-size: 11px
 }
 
@@ -1590,6 +1692,70 @@ button svg,a svg {
 .reveal-ready.is-visible {
   opacity: 1;
   transform: translateY(0)
+}
+
+.service-tabs button {
+  position: relative
+}
+
+.tab-progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 5px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--corten);
+  transform-origin: left;
+  animation: tab-progress 5.5s linear forwards;
+  animation-play-state: paused
+}
+
+.cycling .tab-progress {
+  animation-play-state: running
+}
+
+.contact-result .button+.button {
+  margin-top: 10px
+}
+
+.lightbox-image {
+  touch-action: pan-y
+}
+
+.lightbox-image img {
+  user-select: none
+}
+
+.lb-from-right {
+  animation: lb-in-right .38s var(--ease)
+}
+
+.lb-from-left {
+  animation: lb-in-left .38s var(--ease)
+}
+
+@keyframes tab-progress {
+  from {
+    transform: scaleX(0)
+  }
+  to {
+    transform: scaleX(1)
+  }
+}
+
+@keyframes lb-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(48px)
+  }
+}
+
+@keyframes lb-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-48px)
+  }
 }
 
 @keyframes enterUp {
@@ -1820,7 +1986,7 @@ button svg,a svg {
     height: 44px;
     margin-right: -8px;
     padding: 0;
-    color: #f3eedf
+    color: #eae9e8
   }
   .menu-button svg {
     width: 22px
@@ -1834,7 +2000,7 @@ button svg,a svg {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: #32271b;
+    background: #252728;
     padding: 10px max(5.55vw,24px) 24px;
     box-shadow: 0 20px 20px #0002
   }
@@ -1844,7 +2010,7 @@ button svg,a svg {
   .nav a {
     font-size: 16px;
     padding: 18px 0;
-    border-bottom: 1px solid #faf7f116
+    border-bottom: 1px solid #f6f6f516
   }
   .nav a::after {
     display: none
@@ -1856,7 +2022,7 @@ button svg,a svg {
     font-size: 14px;
     margin-top: 14px;
     padding: 12px 0;
-    color: #d5b28a
+    color: #d49576
   }
   .hero-inner {
     grid-template-columns: 1.05fr 1fr;
@@ -2059,7 +2225,7 @@ button svg,a svg {
     height: 123px;
     bottom: -22px;
     left: -3px;
-    border: 4px solid #dbc4a5
+    border: 4px solid #d8a991
   }
   .wood-sample span {
     font-size: 11px;
@@ -2281,9 +2447,13 @@ button svg,a svg {
   .manifesto>p>span {
     display: block
   }
-  .manifesto-grain {
-    right: -28%;
-    opacity: .55
+  .manifesto-truss {
+    right: -18%;
+    top: auto;
+    bottom: 4%;
+    width: 88%;
+    transform: none;
+    opacity: .4
   }
   .manifesto-bottom {
     margin-top: 30px
@@ -2347,7 +2517,7 @@ button svg,a svg {
   .gallery-prev,.gallery-next {
     width: 40px;
     height: 40px;
-    background: #2d2115cc
+    background: #1f2123cc
   }
   .gallery-prev svg,.gallery-next svg {
     width: 20px
@@ -2421,7 +2591,7 @@ button svg,a svg {
   }
   .hero h1>span {
     background: none;
-    -webkit-text-fill-color: #d6b28c
+    -webkit-text-fill-color: #d59778
   }
   .hero-art,.hero-copy,.hero h1,.hero-copy>p,.hero-actions,.hero-eyebrow {
     opacity: 1;

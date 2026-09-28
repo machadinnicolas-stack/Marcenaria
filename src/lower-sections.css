@@ -16,8 +16,8 @@
 
 .ls-process {
   padding-top: clamp(78px,9vw,140px);
-  color: #362c21;
-  background: #f3eee5;
+  color: #2a2c2d;
+  background: #edeceb;
   overflow-x: clip
 }
 
@@ -62,32 +62,35 @@
   max-width: 340px;
   font-size: 15px;
   line-height: 1.85;
-  color: #716a63;
+  color: #6b6a69;
   margin: 0 0 3px auto
 }
 
 .ls-steps {
   --dt: 22px;
   --root: 14px;
-  --tip: 23px;
+  --tip: 14px;
   --y1: 32%;
   --y2: 70%;
-  --tails: calc(100% - var(--dt) - 1px) 0, calc(100% - var(--dt) - 1px) calc(var(--y1) - var(--root)), 100% calc(var(--y1) - var(--tip)), 100% calc(var(--y1) + var(--tip)), calc(100% - var(--dt) - 1px) calc(var(--y1) + var(--root)), calc(100% - var(--dt) - 1px) calc(var(--y2) - var(--root)), 100% calc(var(--y2) - var(--tip)), 100% calc(var(--y2) + var(--tip)), calc(100% - var(--dt) - 1px) calc(var(--y2) + var(--root)), calc(100% - var(--dt) - 1px) 100%;
-  --sockets: 0 100%, 0 calc(var(--y2) + var(--root) + 1px), calc(var(--dt) + 1px) calc(var(--y2) + var(--tip) + 1px), calc(var(--dt) + 1px) calc(var(--y2) - var(--tip) - 1px), 0 calc(var(--y2) - var(--root) - 1px), 0 calc(var(--y1) + var(--root) + 1px), calc(var(--dt) + 1px) calc(var(--y1) + var(--tip) + 1px), calc(var(--dt) + 1px) calc(var(--y1) - var(--tip) - 1px), 0 calc(var(--y1) - var(--root) - 1px), 0 0;
+  --tails: calc(100% - var(--dt) - 2px) 0, calc(100% - var(--dt) - 2px) calc(var(--y1) - var(--root)), 100% calc(var(--y1) - var(--tip)), 100% calc(var(--y1) + var(--tip)), calc(100% - var(--dt) - 2px) calc(var(--y1) + var(--root)), calc(100% - var(--dt) - 2px) calc(var(--y2) - var(--root)), 100% calc(var(--y2) - var(--tip)), 100% calc(var(--y2) + var(--tip)), calc(100% - var(--dt) - 2px) calc(var(--y2) + var(--root)), calc(100% - var(--dt) - 2px) 100%;
+  --sockets: 0 100%, 0 calc(var(--y2) + var(--root) + 2px), calc(var(--dt) + 2px) calc(var(--y2) + var(--tip) + 2px), calc(var(--dt) + 2px) calc(var(--y2) - var(--tip) - 2px), 0 calc(var(--y2) - var(--root) - 2px), 0 calc(var(--y1) + var(--root) + 2px), calc(var(--dt) + 2px) calc(var(--y1) + var(--tip) + 2px), calc(var(--dt) + 2px) calc(var(--y1) - var(--tip) - 2px), 0 calc(var(--y1) - var(--root) - 2px), 0 0;
   display: grid;
   grid-template-columns: repeat(4,minmax(0,1fr));
-  padding-block: 4px 8px
+  padding-block: 0;
+  background: #3d4146
 }
 
 .ls-step {
   width: calc(100% + var(--dt));
   padding: 28px calc(var(--dt) + 26px) 34px calc(var(--dt) + 24px);
-  background: linear-gradient(90deg,#0000000a,transparent 12%,transparent 88%,#00000010),var(--wood-maple);
-  background-size: auto,600px 800px;
+  --bolt-x: calc(var(--dt) + 14px);
+  background: radial-gradient(circle at var(--bolt-x) 14px,#b9bec2 0 2.4px,#4f5459 3px,transparent 4px),radial-gradient(circle at var(--bolt-x) calc(100% - 14px),#b9bec2 0 2.4px,#4f5459 3px,transparent 4px),linear-gradient(90deg,#0000000a,transparent 12%,transparent 88%,#00000014),var(--steel-light);
+  background-size: auto,auto,auto,600px 800px;
   clip-path: polygon(var(--tails),var(--sockets))
 }
 
 .ls-step:first-child {
+  --bolt-x: 14px;
   padding-left: 26px;
   clip-path: polygon(var(--tails),0 100%,0 0)
 }
@@ -103,7 +106,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 46px;
-  color: #8b7158
+  color: #75736e
 }
 
 .ls-step-top>svg {
@@ -132,7 +135,7 @@
 .ls-step p {
   font-size: 14px;
   line-height: 1.85;
-  color: #5d564f;
+  color: #555657;
   max-width: 240px;
   margin: 0
 }
@@ -150,8 +153,8 @@
 
 .ls-faq {
   padding-block: clamp(85px,9vw,140px);
-  background: #faf7f1;
-  color: #362c21
+  background: #f6f6f5;
+  color: #2a2c2d
 }
 
 .ls-faq-grid {
@@ -163,18 +166,18 @@
 .ls-faq-heading>p:last-child {
   font-size: 14px;
   line-height: 1.8;
-  color: #716a63;
+  color: #6b6a69;
   margin-top: 25px
 }
 
 .ls-accordion {
-  border-top: 1px solid #362c2133;
+  border-top: 1px solid #2a2c2d33;
   margin-top: 2px;
   align-self: start
 }
 
 .ls-faq-item {
-  border-bottom: 1px solid #362c2133
+  border-bottom: 1px solid #2a2c2d33
 }
 
 .ls-faq-item h3 {
@@ -192,7 +195,7 @@
   padding: 25px 0;
   text-align: left;
   font: 500 16px/1.5 'DM Sans',sans-serif;
-  color: #362c21;
+  color: #2a2c2d;
   cursor: pointer
 }
 
@@ -205,7 +208,7 @@
   place-items: center;
   width: 29px;
   height: 29px;
-  border: 1px solid #362c2138;
+  border: 1px solid #2a2c2d38;
   border-radius: 50%;
   flex-shrink: 0;
   transition: background .2s,color .2s,border-color .2s
@@ -214,7 +217,7 @@
 .ls-faq-trigger:hover .ls-faq-icon,.ls-faq-item-open .ls-faq-icon {
   background: var(--forest);
   border-color: var(--forest);
-  color: #faf7f1
+  color: #f6f6f5
 }
 
 .ls-faq-answer p {
@@ -222,7 +225,7 @@
   padding: 0 50px 26px 0;
   font-size: 14px;
   line-height: 1.9;
-  color: #716a63;
+  color: #6b6a69;
   max-width: 560px
 }
 
@@ -230,8 +233,8 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #2d2318;
-  color: #f3eee5;
+  background: #212324;
+  color: #edeceb;
   padding-top: clamp(100px,10vw,150px)
 }
 
@@ -241,7 +244,7 @@
 }
 
 .ls-contact .ls-eyebrow {
-  color: #d0b79b
+  color: #d39d82
 }
 
 .ls-contact h2 {
@@ -256,13 +259,13 @@
 .ls-contact h2 em {
   font-family: Georgia,'Times New Roman',serif;
   font-weight: 400;
-  color: #c79b73
+  color: #c78260
 }
 
 .ls-contact-content>p:not(.ls-eyebrow) {
   font-size: 15px;
   line-height: 1.8;
-  color: #c8c3bd;
+  color: #c3c3c2;
   margin: 30px 0
 }
 
@@ -270,9 +273,9 @@
   display: inline-flex;
   align-items: center;
   gap: 28px;
-  background: #ebdbc7;
-  border: 1px solid #ebdbc7;
-  color: #2d2318;
+  background: #dcdad6;
+  border: 1px solid #dcdad6;
+  color: #212324;
   padding: 7px 7px 7px 25px;
   border-radius: 100px;
   font: 500 13px/1.4 'DM Sans',sans-serif;
@@ -287,13 +290,13 @@
   width: 39px;
   height: 39px;
   border-radius: 50%;
-  background: #2d2318;
-  color: #ebdbc7;
+  background: #212324;
+  color: #dcdad6;
   transition: transform .25s
 }
 
 .ls-contact-button:hover {
-  background: #faf7f1;
+  background: #f6f6f5;
   transform: translateY(-2px)
 }
 
@@ -310,7 +313,7 @@
   height: 680px;
   transform: translateY(-42%) rotate(-13deg);
   opacity: .5;
-  color: #c9a57d;
+  color: #ca8968;
   pointer-events: none
 }
 
@@ -324,7 +327,7 @@
   font-size: 10px;
   line-height: 1.5;
   letter-spacing: 2px;
-  color: #aaa39c;
+  color: #a4a3a2;
   position: relative
 }
 
@@ -333,13 +336,13 @@
   position: absolute;
   inset: 0 clamp(24px,5vw,80px) auto;
   height: 1px;
-  background: #e4d5bc25
+  background: #e0baa725
 }
 
 .ls-footer {
   padding-top: 57px;
-  background: #f3eee5;
-  color: #362c21
+  background: #edeceb;
+  color: #2a2c2d
 }
 
 .ls-footer-main {
@@ -366,7 +369,7 @@
 }
 
 .ls-brand-dot {
-  color: #bc865c
+  color: #bf7048
 }
 
 .ls-brand small {
@@ -379,7 +382,7 @@
   margin: 8px 0 0;
   font-size: 15px;
   line-height: 1.8;
-  color: #716a63
+  color: #6b6a69
 }
 
 .ls-footer-nav {
@@ -408,7 +411,7 @@
 }
 
 .ls-footer-nav a:hover,.ls-footer-bottom a:hover {
-  color: #a46e46
+  color: #a35c39
 }
 
 .ls-footer-bottom {
@@ -416,7 +419,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  border-top: 1px solid #362c2129;
+  border-top: 1px solid #2a2c2d29;
   padding-block: 24px;
   font-size: 12px;
   line-height: 1.6;
@@ -424,7 +427,7 @@
 }
 
 .ls-faq-trigger:focus-visible,.ls-contact-button:focus-visible,.ls-footer a:focus-visible {
-  outline: 2px solid #bc865c;
+  outline: 2px solid #bf7048;
   outline-offset: 6px
 }
 
@@ -498,14 +501,16 @@
   .ls-steps {
     --dt: 16px;
     grid-template-columns: repeat(2,minmax(0,1fr));
-    row-gap: 12px
+    row-gap: 2px
   }
   .ls-step:nth-child(odd) {
+    --bolt-x: 10px;
     width: calc(100% + var(--dt));
     padding: 22px calc(var(--dt) + 12px) 26px 16px;
     clip-path: polygon(var(--tails),0 100%,0 0)
   }
   .ls-step:nth-child(even) {
+    --bolt-x: calc(var(--dt) + 10px);
     width: 100%;
     padding: 22px 16px 26px calc(var(--dt) + 12px);
     clip-path: polygon(100% 0,100% 100%,var(--sockets))
