@@ -1,6 +1,6 @@
 .fx-section {
   position: relative;
-  background: #182d26;
+  background: #2d2318;
   color: #f3eee5;
   padding: clamp(76px, 8.5vw, 132px) 6%;
   scroll-margin-top: 86px;
@@ -43,15 +43,15 @@
 .fx-description {
   max-width: 35ch;
   margin: 27px 0 0;
-  color: #c0c7bd;
+  color: #c7c2bd;
   font-size: 15px;
   line-height: 1.85;
   font-weight: 400;
 }
 .fx-finishes { border: 0; margin: 37px 0 0; padding: 0; min-width: 0; }
-.fx-finishes legend { margin-bottom: 17px; padding: 0; font-size: 12px; letter-spacing: 0.07em; color: #d2d5ca; }
+.fx-finishes legend { margin-bottom: 17px; padding: 0; font-size: 12px; letter-spacing: 0.07em; color: #d5d0ca; }
 .fx-options { display: flex; gap: 27px; }
-.fx-option { position: relative; display: flex; align-items: center; gap: 9px; cursor: pointer; color: #b1bcb0; }
+.fx-option { position: relative; display: flex; align-items: center; gap: 9px; cursor: pointer; color: #bcb6b0; }
 .fx-option input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; margin: 0; cursor: pointer; }
 .fx-swatch {
   display: grid;
@@ -75,7 +75,7 @@
 .fx-option-selected .fx-swatch { border-color: #cda67a; }
 .fx-option:hover .fx-swatch { border-color: #cda67a90; }
 .fx-option input:focus-visible ~ .fx-swatch { outline: 2px solid #f3eee5; outline-offset: 4px; }
-.fx-interaction-hint { margin: 37px 0 0; display: flex; align-items: center; gap: 10px; color: #a9b5a8; font-size: 12px; line-height: 1.6; }
+.fx-interaction-hint { margin: 37px 0 0; display: flex; align-items: center; gap: 10px; color: #b5afa8; font-size: 12px; line-height: 1.6; }
 .fx-interaction-hint svg { width: 18px; height: 18px; color: #c3a483; flex: 0 0 auto; }
 
 .fx-sample { width: 100%; min-width: 0; margin: 0; }
@@ -113,7 +113,7 @@
 .fx-panel-label { position: absolute; bottom: 27px; left: 27px; display: grid; gap: 8px; color: #fff4e1; font-size: 27px; letter-spacing: -0.04em; pointer-events: none; text-shadow: 0 1px 12px #00000015; }
 .fx-panel-label > span { font-size: 8px; letter-spacing: 0.22em; color: #fff0d8c2; }
 .fx-panel-mark { position: absolute; right: 26px; bottom: 21px; font-size: 37px; font-family: Georgia, serif; line-height: 1; color: #fff1d6bd; pointer-events: none; }
-.fx-caption { display: flex; align-items: center; gap: 20px; color: #9cab9c; margin-top: 17px; font-size: 11px; line-height: 1.6; letter-spacing: 0.035em; }
+.fx-caption { display: flex; align-items: center; gap: 20px; color: #aba39c; margin-top: 17px; font-size: 11px; line-height: 1.6; letter-spacing: 0.035em; }
 .fx-caption-line { height: 1px; background: #f3eee51b; flex: 1 1 auto; }
 .fx-wood-panel[data-reduced-motion='true'] .fx-light { transition: none; }
 

@@ -211,7 +211,7 @@ export default function FinishExperience() {
           <figcaption className="fx-caption"><span>Estudo de textura · representação ilustrativa</span><span className="fx-caption-line" aria-hidden="true" /></figcaption>
         </figure>
       </div>
-      <GrainEdge fill="#faf7f1" side="bottom" />
+      <GrainEdge fill="#f3eee5" side="bottom" />
     </section>
   );
 }

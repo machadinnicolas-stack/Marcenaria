@@ -45,6 +45,24 @@ export function GrainEdge({ fill, side = 'top' }) {
   );
 }
 
+const TAPE_MARKS = Array.from({ length: 64 }, (_, i) => (i + 1) * 10);
+
+// Scroll progress as a carpenter's tape measure unrolling across the top of the page (1 unit = 6px).
+export function TapeMeasure() {
+  const ref = useRef(null);
+
+  useGSAP(() => {
+    gsap.fromTo(ref.current, { '--tape': 0 }, { '--tape': 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.4 } });
+  }, { scope: ref });
+
+  return (
+    <div className="tape" ref={ref} aria-hidden="true">
+      <div className="tape-strip">{TAPE_MARKS.map((n) => <span key={n} style={{ left: `${n * 6}px` }}>{n}</span>)}</div>
+      <span className="tape-hook" />
+    </div>
+  );
+}
+
 // Flat-sawn "cathedral" figure: nested arches, narrow and pointed at the heart, broad at the edge.
 function cathedralPaths(count = 12, seed = 23) {
   const random = seededRandom(seed);

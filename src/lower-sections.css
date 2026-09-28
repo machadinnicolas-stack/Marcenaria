@@ -16,7 +16,7 @@
 
 .ls-process {
   padding-top: clamp(78px,9vw,140px);
-  color: #21362d;
+  color: #362c21;
   background: #f3eee5;
   overflow-x: clip
 }
@@ -62,7 +62,7 @@
   max-width: 340px;
   font-size: 15px;
   line-height: 1.85;
-  color: #637168;
+  color: #716a63;
   margin: 0 0 3px auto
 }
 
@@ -107,7 +107,7 @@
 }
 
 .ls-step-top>svg {
-  color: #829087;
+  color: #908982;
   transition: transform .3s ease
 }
 
@@ -132,7 +132,7 @@
 .ls-step p {
   font-size: 14px;
   line-height: 1.85;
-  color: #4f5d54;
+  color: #5d564f;
   max-width: 240px;
   margin: 0
 }
@@ -145,13 +145,13 @@
   padding-block: 25px;
   font-size: 10px;
   letter-spacing: 1.7px;
-  color: #6e7b71
+  color: #7b756e
 }
 
 .ls-faq {
   padding-block: clamp(85px,9vw,140px);
   background: #faf7f1;
-  color: #21362d
+  color: #362c21
 }
 
 .ls-faq-grid {
@@ -163,18 +163,18 @@
 .ls-faq-heading>p:last-child {
   font-size: 14px;
   line-height: 1.8;
-  color: #637168;
+  color: #716a63;
   margin-top: 25px
 }
 
 .ls-accordion {
-  border-top: 1px solid #21362d33;
+  border-top: 1px solid #362c2133;
   margin-top: 2px;
   align-self: start
 }
 
 .ls-faq-item {
-  border-bottom: 1px solid #21362d33
+  border-bottom: 1px solid #362c2133
 }
 
 .ls-faq-item h3 {
@@ -192,7 +192,7 @@
   padding: 25px 0;
   text-align: left;
   font: 500 16px/1.5 'DM Sans',sans-serif;
-  color: #21362d;
+  color: #362c21;
   cursor: pointer
 }
 
@@ -205,15 +205,15 @@
   place-items: center;
   width: 29px;
   height: 29px;
-  border: 1px solid #21362d38;
+  border: 1px solid #362c2138;
   border-radius: 50%;
   flex-shrink: 0;
   transition: background .2s,color .2s,border-color .2s
 }
 
 .ls-faq-trigger:hover .ls-faq-icon,.ls-faq-item-open .ls-faq-icon {
-  background: #21362d;
-  border-color: #21362d;
+  background: var(--forest);
+  border-color: var(--forest);
   color: #faf7f1
 }
 
@@ -222,7 +222,7 @@
   padding: 0 50px 26px 0;
   font-size: 14px;
   line-height: 1.9;
-  color: #637168;
+  color: #716a63;
   max-width: 560px
 }
 
@@ -230,7 +230,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #182d26;
+  background: #2d2318;
   color: #f3eee5;
   padding-top: clamp(100px,10vw,150px)
 }
@@ -262,7 +262,7 @@
 .ls-contact-content>p:not(.ls-eyebrow) {
   font-size: 15px;
   line-height: 1.8;
-  color: #c0c8bd;
+  color: #c8c3bd;
   margin: 30px 0
 }
 
@@ -272,7 +272,7 @@
   gap: 28px;
   background: #ebdbc7;
   border: 1px solid #ebdbc7;
-  color: #182d26;
+  color: #2d2318;
   padding: 7px 7px 7px 25px;
   border-radius: 100px;
   font: 500 13px/1.4 'DM Sans',sans-serif;
@@ -287,7 +287,7 @@
   width: 39px;
   height: 39px;
   border-radius: 50%;
-  background: #182d26;
+  background: #2d2318;
   color: #ebdbc7;
   transition: transform .25s
 }
@@ -324,7 +324,7 @@
   font-size: 10px;
   line-height: 1.5;
   letter-spacing: 2px;
-  color: #9daa9c;
+  color: #aaa39c;
   position: relative
 }
 
@@ -339,7 +339,7 @@
 .ls-footer {
   padding-top: 57px;
   background: #f3eee5;
-  color: #21362d
+  color: #362c21
 }
 
 .ls-footer-main {
@@ -379,7 +379,7 @@
   margin: 8px 0 0;
   font-size: 15px;
   line-height: 1.8;
-  color: #637168
+  color: #716a63
 }
 
 .ls-footer-nav {
@@ -416,11 +416,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  border-top: 1px solid #21362d29;
+  border-top: 1px solid #362c2129;
   padding-block: 24px;
   font-size: 12px;
   line-height: 1.6;
-  color: #6d776d
+  color: #77726d
 }
 
 .ls-faq-trigger:focus-visible,.ls-contact-button:focus-visible,.ls-footer a:focus-visible {
