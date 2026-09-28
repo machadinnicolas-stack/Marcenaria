@@ -1,6 +1,8 @@
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Plus, Minus } from 'lucide-react';
 import './lower-sections.css';
+import { gsap, useGSAP, prefersReducedMotion } from './gsap.js';
+import { CathedralGrain, GrainEdge } from './Wood.jsx';
 
 const steps = [
   {
@@ -43,6 +45,23 @@ const questions = [
 export default function LowerSections({ onContact }) {
   const [openQuestion, setOpenQuestion] = useState(0);
   const accordionId = useId();
+  const stepsRef = useRef(null);
+
+  // The four steps are dovetailed boards: they arrive loose, then slide together and lock.
+  useGSAP(() => {
+    if (prefersReducedMotion()) return;
+    const boards = gsap.utils.toArray('.ls-step', stepsRef.current);
+    const twoColumns = window.matchMedia('(max-width: 700px)').matches;
+    const spread = twoColumns ? [-14, 14, -14, 14] : [-66, -22, 22, 66];
+    const tilt = [-2.4, 1.6, -1.4, 2.2];
+    const lift = [14, -10, 12, -8];
+    gsap.timeline({ scrollTrigger: { trigger: stepsRef.current, start: 'top 78%', once: true } })
+      .fromTo(boards,
+        { autoAlpha: 0, x: (i) => spread[i] * 1.8, y: (i) => lift[i] + 36, rotate: (i) => tilt[i] * 1.6 },
+        { autoAlpha: 1, x: (i) => spread[i], y: (i) => lift[i], rotate: (i) => tilt[i], duration: 0.8, ease: 'power2.out', stagger: 0.07 })
+      .to(boards, { x: 0, y: 0, rotate: 0, duration: 0.7, ease: 'power4.in', stagger: { each: 0.05, from: 'center' } }, '+=0.2')
+      .to(stepsRef.current, { scale: 1.012, duration: 0.08, yoyo: true, repeat: 1, ease: 'power1.out' });
+  }, { scope: stepsRef });
 
   return (
     <>
@@ -55,9 +74,9 @@ export default function LowerSections({ onContact }) {
             </div>
             <p className="ls-section-intro">Um bom resultado começa com uma boa conversa. Acompanhamos cada etapa para que o projeto faça sentido na sua vida.</p>
           </div>
-          <div className="ls-steps">
+          <div className="ls-steps" ref={stepsRef}>
             {steps.map((step, index) => (
-              <article className="ls-step reveal" key={step.name}>
+              <article className="ls-step" key={step.name}>
                 <div className="ls-step-top"><span className="ls-step-number">0{index + 1}</span><ArrowUpRight aria-hidden="true" size={23} strokeWidth={1.25} /></div>
                 <h3>{step.name}</h3>
                 <p>{step.description}</p>
@@ -97,7 +116,8 @@ export default function LowerSections({ onContact }) {
       </section>
 
       <section className="ls-contact" id="contato" aria-labelledby="ls-contact-heading">
-        <div className="ls-contact-grain" aria-hidden="true">{Array.from({ length: 13 }, (_, index) => <span key={index} />)}</div>
+        <GrainEdge fill="#faf7f1" />
+        <CathedralGrain className="ls-contact-grain" start="top 80%" end="bottom 85%" />
         <div className="ls-container ls-contact-content reveal">
           <p className="ls-eyebrow"><span /> UM ESPAÇO COM A SUA ESSÊNCIA</p>
           <h2 id="ls-contact-heading">Sua ideia merece<br />ganhar <em>forma.</em></h2>

@@ -1,4 +1,5 @@
 .fx-section {
+  position: relative;
   background: #182d26;
   color: #f3eee5;
   padding: clamp(76px, 8.5vw, 132px) 6%;
@@ -7,6 +8,8 @@
 }
 
 .fx-layout {
+  position: relative;
+  z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
@@ -86,7 +89,7 @@
   position: relative;
   overflow: hidden;
   background: #b9996f;
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow: 0 30px 70px -32px #000000a1, 0 0 0 1px #ffffff0f;
   cursor: crosshair;
   touch-action: pan-y;

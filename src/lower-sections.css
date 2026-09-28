@@ -17,7 +17,8 @@
 .ls-process {
   padding-top: clamp(78px,9vw,140px);
   color: #21362d;
-  background: #f3eee5
+  background: #f3eee5;
+  overflow-x: clip
 }
 
 .ls-eyebrow {
@@ -66,19 +67,35 @@
 }
 
 .ls-steps {
+  --dt: 22px;
+  --root: 14px;
+  --tip: 23px;
+  --y1: 32%;
+  --y2: 70%;
+  --tails: calc(100% - var(--dt) - 1px) 0, calc(100% - var(--dt) - 1px) calc(var(--y1) - var(--root)), 100% calc(var(--y1) - var(--tip)), 100% calc(var(--y1) + var(--tip)), calc(100% - var(--dt) - 1px) calc(var(--y1) + var(--root)), calc(100% - var(--dt) - 1px) calc(var(--y2) - var(--root)), 100% calc(var(--y2) - var(--tip)), 100% calc(var(--y2) + var(--tip)), calc(100% - var(--dt) - 1px) calc(var(--y2) + var(--root)), calc(100% - var(--dt) - 1px) 100%;
+  --sockets: 0 100%, 0 calc(var(--y2) + var(--root) + 1px), calc(var(--dt) + 1px) calc(var(--y2) + var(--tip) + 1px), calc(var(--dt) + 1px) calc(var(--y2) - var(--tip) - 1px), 0 calc(var(--y2) - var(--root) - 1px), 0 calc(var(--y1) + var(--root) + 1px), calc(var(--dt) + 1px) calc(var(--y1) + var(--tip) + 1px), calc(var(--dt) + 1px) calc(var(--y1) - var(--tip) - 1px), 0 calc(var(--y1) - var(--root) - 1px), 0 0;
   display: grid;
   grid-template-columns: repeat(4,minmax(0,1fr));
-  border-top: 1px solid #21362d33;
-  border-bottom: 1px solid #21362d33
+  padding-block: 4px 8px
 }
 
 .ls-step {
-  padding: 26px 28px 37px 0
+  width: calc(100% + var(--dt));
+  padding: 28px calc(var(--dt) + 26px) 34px calc(var(--dt) + 24px);
+  background: linear-gradient(90deg,#0000000a,transparent 12%,transparent 88%,#00000010),var(--wood-maple);
+  background-size: auto,600px 800px;
+  clip-path: polygon(var(--tails),var(--sockets))
 }
 
-.ls-step+.ls-step {
-  border-left: 1px solid #21362d26;
-  padding-left: 28px
+.ls-step:first-child {
+  padding-left: 26px;
+  clip-path: polygon(var(--tails),0 100%,0 0)
+}
+
+.ls-step:last-child {
+  width: 100%;
+  padding-right: 26px;
+  clip-path: polygon(100% 0,100% 100%,var(--sockets))
 }
 
 .ls-step-top {
@@ -115,7 +132,7 @@
 .ls-step p {
   font-size: 14px;
   line-height: 1.85;
-  color: #637168;
+  color: #4f5d54;
   max-width: 240px;
   margin: 0
 }
@@ -215,7 +232,7 @@
   overflow: hidden;
   background: #182d26;
   color: #f3eee5;
-  padding-top: clamp(80px,8vw,120px)
+  padding-top: clamp(100px,10vw,150px)
 }
 
 .ls-contact-content {
@@ -292,67 +309,9 @@
   width: 650px;
   height: 680px;
   transform: translateY(-42%) rotate(-13deg);
-  opacity: .36;
+  opacity: .5;
+  color: #c9a57d;
   pointer-events: none
-}
-
-.ls-contact-grain>span {
-  position: absolute;
-  inset: calc(var(--i,0)*22px);
-  border: 1px solid #bb987051;
-  border-radius: 50% 50% 0 0
-}
-
-.ls-contact-grain>span:nth-child(1) {
-  --i: 0
-}
-
-.ls-contact-grain>span:nth-child(2) {
-  --i: 1
-}
-
-.ls-contact-grain>span:nth-child(3) {
-  --i: 2
-}
-
-.ls-contact-grain>span:nth-child(4) {
-  --i: 3
-}
-
-.ls-contact-grain>span:nth-child(5) {
-  --i: 4
-}
-
-.ls-contact-grain>span:nth-child(6) {
-  --i: 5
-}
-
-.ls-contact-grain>span:nth-child(7) {
-  --i: 6
-}
-
-.ls-contact-grain>span:nth-child(8) {
-  --i: 7
-}
-
-.ls-contact-grain>span:nth-child(9) {
-  --i: 8
-}
-
-.ls-contact-grain>span:nth-child(10) {
-  --i: 9
-}
-
-.ls-contact-grain>span:nth-child(11) {
-  --i: 10
-}
-
-.ls-contact-grain>span:nth-child(12) {
-  --i: 11
-}
-
-.ls-contact-grain>span:nth-child(13) {
-  --i: 12
 }
 
 .ls-contact-note {
@@ -483,11 +442,17 @@
   .ls-process h2,.ls-faq h2 {
     letter-spacing: -2px
   }
-  .ls-step {
-    padding-right: 18px
+  .ls-steps {
+    --dt: 18px
   }
-  .ls-step+.ls-step {
+  .ls-step {
+    padding: 24px calc(var(--dt) + 16px) 30px
+  }
+  .ls-step:first-child {
     padding-left: 18px
+  }
+  .ls-step:last-child {
+    padding-right: 18px
   }
   .ls-step h3 {
     font-size: 22px
@@ -531,20 +496,19 @@
     letter-spacing: -1.8px
   }
   .ls-steps {
-    grid-template-columns: repeat(2,minmax(0,1fr))
+    --dt: 16px;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    row-gap: 12px
   }
-  .ls-step {
-    padding: 23px 20px 28px 0
+  .ls-step:nth-child(odd) {
+    width: calc(100% + var(--dt));
+    padding: 22px calc(var(--dt) + 12px) 26px 16px;
+    clip-path: polygon(var(--tails),0 100%,0 0)
   }
-  .ls-step+.ls-step {
-    padding-left: 20px
-  }
-  .ls-step:nth-child(3) {
-    padding-left: 0;
-    border-left: 0
-  }
-  .ls-step:nth-child(n+3) {
-    border-top: 1px solid #21362d26
+  .ls-step:nth-child(even) {
+    width: 100%;
+    padding: 22px 16px 26px calc(var(--dt) + 12px);
+    clip-path: polygon(100% 0,100% 100%,var(--sockets))
   }
   .ls-step-top {
     margin-bottom: 30px

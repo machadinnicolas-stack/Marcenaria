@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import './finish-experience.css';
+import { GrainEdge } from './Wood.jsx';
 
 const FINISHES = [
   { id: 'natural', name: 'Natural', rgb: [190, 155, 109], swatch: '#c8a674' },
@@ -160,6 +161,7 @@ export default function FinishExperience() {
 
   return (
     <section className="fx-section" id="acabamento" aria-labelledby={headingId}>
+      <GrainEdge fill="#f3eee5" />
       <div className="fx-layout">
         <div className="fx-copy">
           <p className="fx-eyebrow"><span aria-hidden="true" /> MATÉRIA & SENSIBILIDADE</p>
@@ -209,6 +211,7 @@ export default function FinishExperience() {
           <figcaption className="fx-caption"><span>Estudo de textura · representação ilustrativa</span><span className="fx-caption-line" aria-hidden="true" /></figcaption>
         </figure>
       </div>
+      <GrainEdge fill="#faf7f1" side="bottom" />
     </section>
   );
 }

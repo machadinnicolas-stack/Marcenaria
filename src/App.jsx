@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, useId } from 'react';
 import { ArrowUpRight, ArrowRight, ArrowDown, Plus, X, Menu, ChevronLeft, ChevronRight, Check, Copy, MoveUpRight } from 'lucide-react';
 import LowerSections from './LowerSections.jsx';
 import FinishExperience from './FinishExperience.jsx';
+import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from './gsap.js';
+import { CathedralGrain } from './Wood.jsx';
 
 const photo = (n, thumb = false) => `/images/image-${String(n).padStart(2, '0')}${thumb ? '-thumb' : ''}.webp`;
 
@@ -118,9 +120,29 @@ function ProjectGallery({ onOpen }) {
   const [expanded, setExpanded] = useState(false);
   const filtered = projects.filter(p => filter === 'Todos' || p.category === filter);
   const shown = expanded ? filtered : filtered.slice(0, 3);
-  return <section className="projects section-pad" id="projetos">
+  const galleryRef = useRef(null);
+
+  // Each photo is "planed": a wood veneer slides off with a shaving curl on its leading edge.
+  useGSAP((context, contextSafe) => {
+    if (prefersReducedMotion()) return undefined;
+    const section = galleryRef.current;
+    section.classList.add('veneer-on');
+    const plane = contextSafe((cards) => cards.forEach((card, i) => {
+      const img = card.querySelector('.project-image img');
+      gsap.timeline({ delay: i * 0.14 })
+        .set(img, { transition: 'none' })
+        .to(card.querySelector('.veneer'), { yPercent: -106, duration: 1.1, ease: 'power3.inOut' }, 0)
+        .from(img, { scale: 1.14, duration: 1.5, ease: 'power2.out' }, 0.1)
+        .set(img, { clearProps: 'transition,transform,scale' });
+    }));
+    ScrollTrigger.batch(section.querySelectorAll('.project-card'), { start: 'top 88%', once: true, onEnter: plane });
+    ScrollTrigger.refresh();
+    return () => section.classList.remove('veneer-on');
+  }, { scope: galleryRef, dependencies: [filter, expanded], revertOnUpdate: true });
+
+  return <section className="projects section-pad" id="projetos" ref={galleryRef}>
     <div className="section-heading reveal"><div><span className="eyebrow"><span className="tiny-line" /> ESPAÇOS COM PERSONALIDADE</span><h2>O detalhe faz<br /><span className="muted">toda a diferença.</span></h2></div><div className="gallery-heading-right"><p>Uma seleção de ambientes, encontros de materiais e ideias para o seu próximo projeto.</p><div className="filter-row" aria-label="Filtrar galeria">{['Todos', 'Ambientes', 'Detalhes', 'Exteriores'].map(f => <button key={f} aria-pressed={filter === f} className={filter === f ? 'active' : ''} onClick={() => {setFilter(f); setExpanded(false);}}>{f}</button>)}</div></div></div>
-    <div className="project-grid">{shown.map((p, index) => <button className={`project-card ${index % 3 === 1 ? 'project-card-offset' : ''}`} key={p.n} onClick={() => onOpen(projects.indexOf(p))} aria-label={`Ampliar: ${p.title}, ${p.detail}`}><div className="project-image"><img src={photo(p.n, true)} alt={p.detail} style={{objectPosition:p.position}} width="525" height="700" loading="lazy" /><span className="project-open"><ArrowUpRight size={21} /></span><span className="project-category">{p.category}</span></div><div className="project-caption"><div><h3>{p.title}</h3><p>{p.detail}</p></div><span>{String(projects.indexOf(p) + 1).padStart(2, '0')}</span></div></button>)}</div>
+    <div className="project-grid">{shown.map((p, index) => <button className={`project-card ${index % 3 === 1 ? 'project-card-offset' : ''}`} key={p.n} onClick={() => onOpen(projects.indexOf(p))} aria-label={`Ampliar: ${p.title}, ${p.detail}`}><div className="project-image"><img src={photo(p.n, true)} alt={p.detail} style={{objectPosition:p.position}} width="525" height="700" loading="lazy" /><span className="project-open"><ArrowUpRight size={21} /></span><span className="project-category">{p.category}</span><span className="veneer" aria-hidden="true"><span className="veneer-curl" /></span></div><div className="project-caption"><div><h3>{p.title}</h3><p>{p.detail}</p></div><span>{String(projects.indexOf(p) + 1).padStart(2, '0')}</span></div></button>)}</div>
     <div className="gallery-bottom"><span>{String(filtered.length).padStart(2, '0')} olhares para inspirar o seu espaço</span>{filtered.length > 3 && <button className="button button-outline" onClick={() => setExpanded(!expanded)}>{expanded ? 'Recolher galeria' : 'Ver toda a galeria'} {expanded ? <X size={16} /> : <Plus size={16} />}</button>}</div>
   </section>;
 }
@@ -152,7 +174,7 @@ export default function App() {
       <ServiceExplorer onContact={openContact} />
       <FinishExperience />
       <ProjectGallery onOpen={setGalleryIndex} />
-      <section className="manifesto section-pad"><span className="eyebrow">O QUE NOS MOVE</span><p className="reveal">Uma casa é feita de histórias.<br />A nossa parte é dar a elas<br /><span>um lugar especial.</span></p><div className="manifesto-bottom"><span className="manifesto-mark">â.</span><span>MATÉRIA, CUIDADO E INTENÇÃO.<br />ESSA É A ESSÊNCIA DA ÂMAGO.</span></div></section>
+      <section className="manifesto section-pad"><CathedralGrain className="manifesto-grain" /><span className="eyebrow">O QUE NOS MOVE</span><p className="reveal">Uma casa é feita de histórias.<br />A nossa parte é dar a elas<br /><span>um lugar especial.</span></p><div className="manifesto-bottom"><span className="manifesto-mark">â.</span><span>MATÉRIA, CUIDADO E INTENÇÃO.<br />ESSA É A ESSÊNCIA DA ÂMAGO.</span></div></section>
       <LowerSections onContact={openContact} />
     </main>
     <button className={`floating-contact ${pastHero ? 'floating-contact-visible' : ''}`} onClick={openContact} aria-label="Conversar sobre um projeto"><span>Seu projeto começa aqui</span><ArrowUpRight size={23} /></button>

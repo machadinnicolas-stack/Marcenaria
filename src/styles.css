@@ -14,7 +14,9 @@
   --text: #243b30;
   --muted: #748073;
   --line: #d9d9cc;
-  --ease: cubic-bezier(.22,1,.36,1)
+  --ease: cubic-bezier(.22,1,.36,1);
+  --wood-veneer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='w' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014 0.0014' numOctaves='4' seed='4'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix type='matrix' values='0.192 0 0 0 0.635 0.220 0 0 0 0.439 0.208 0 0 0 0.247 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23w)'/%3E%3C/svg%3E");
+  --wood-maple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='800'%3E%3Cfilter id='w' x='0' y='0' width='100%' height='100%' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014 0.0014' numOctaves='4' seed='11'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix type='matrix' values='0.082 0 0 0 0.847 0.118 0 0 0 0.757 0.165 0 0 0 0.612 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23w)'/%3E%3C/svg%3E")
 }
 
 * {
@@ -523,7 +525,8 @@ button svg,a svg {
   position: relative;
   height: 565px;
   overflow: hidden;
-  border-radius: 2px
+  border-radius: 50% 50% 4px 4px / 30% 30% 4px 4px;
+  isolation: isolate
 }
 
 .hero-photo {
@@ -546,8 +549,10 @@ button svg,a svg {
 
 .hero-photo-label {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
   padding: 7px 11px;
   border-radius: 2px;
   background: #101a1570;
@@ -767,7 +772,8 @@ button svg,a svg {
   height: 560px;
   position: relative;
   overflow: hidden;
-  border-radius: 2px
+  border-radius: 28px;
+  isolation: isolate
 }
 
 .service-photo>img {
@@ -1039,7 +1045,9 @@ button svg,a svg {
   position: relative;
   overflow: hidden;
   background: #e6e3d6;
-  aspect-ratio: 4/5
+  aspect-ratio: 4/5;
+  border-radius: 50% 50% 4px 4px / 38% 38% 4px 4px;
+  isolation: isolate
 }
 
 .project-image::after {
@@ -1062,8 +1070,8 @@ button svg,a svg {
 
 .project-open {
   position: absolute;
-  top: 17px;
-  right: 17px;
+  bottom: 18px;
+  right: 18px;
   z-index: 1;
   width: 37px;
   height: 37px;
@@ -1080,6 +1088,30 @@ button svg,a svg {
 .project-card:hover .project-open {
   background: #d8b48b;
   color: #182d26
+}
+
+.veneer {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--wood-veneer) center/600px 800px;
+  pointer-events: none
+}
+
+.veneer-on .veneer {
+  display: block
+}
+
+.veneer-curl {
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: -13px;
+  height: 26px;
+  border-radius: 13px;
+  background: linear-gradient(180deg,#5e3f25 0%,#b0804e 28%,#f3dbb3 50%,#c79866 70%,#6d4a2e 100%);
+  box-shadow: 0 12px 18px -8px #000000a6
 }
 
 .project-category {
@@ -1150,18 +1182,52 @@ button svg,a svg {
   overflow: hidden
 }
 
-.manifesto::after {
-  content: '';
+.manifesto-grain {
   position: absolute;
-  right: 10%;
-  top: -75px;
-  height: 550px;
-  width: 280px;
-  border: 1px solid #bfc6b077;
-  border-radius: 150px 150px 0 0;
-  transform: rotate(25deg);
-  pointer-events: none;
-  box-shadow: 30px 0 0 #e6e6d9,31px 0 0 #bfc6b055,60px 0 0 #e6e6d9,61px 0 0 #bfc6b033
+  right: 3%;
+  bottom: -8%;
+  height: 125%;
+  width: auto;
+  aspect-ratio: 2/3;
+  color: #a9b198;
+  transform: rotate(-6deg);
+  pointer-events: none
+}
+
+.cathedral-grain {
+  -webkit-mask-image: linear-gradient(180deg,#000 55%,transparent 94%);
+  mask-image: linear-gradient(180deg,#000 55%,transparent 94%)
+}
+
+.cathedral-grain path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0
+}
+
+.grain-edge {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 100%;
+  height: clamp(44px,6vw,90px);
+  color: #f3eee526;
+  pointer-events: none
+}
+
+.grain-edge-bottom {
+  top: auto;
+  bottom: -1px;
+  transform: scale(-1,-1)
+}
+
+.grain-edge-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke
 }
 
 .manifesto>p {
@@ -1179,8 +1245,9 @@ button svg,a svg {
 
 .manifesto-bottom {
   display: flex;
-  justify-content: space-between;
-  align-items: end;
+  justify-content: flex-start;
+  gap: 26px;
+  align-items: center;
   margin-top: 30px;
   position: relative;
   z-index: 1
@@ -1769,8 +1836,7 @@ button svg,a svg {
   }
   .hero-photo-label {
     font-size: 9px;
-    left: 16px;
-    top: 16px
+    top: 22px
   }
   .hero-photo-caption {
     font-size: 17px;
@@ -1932,8 +1998,7 @@ button svg,a svg {
     object-position: center 47%
   }
   .hero-photo-label {
-    left: 16px;
-    top: 16px;
+    top: 20px;
     font-size: 9px;
     letter-spacing: 1.8px
   }
@@ -2144,7 +2209,7 @@ button svg,a svg {
   .project-open {
     width: 37px;
     height: 37px;
-    top: 20px;
+    bottom: 20px;
     right: 20px
   }
   .gallery-bottom {
@@ -2175,10 +2240,9 @@ button svg,a svg {
   .manifesto>p>span {
     display: block
   }
-  .manifesto::after {
-    right: -130px;
-    top: -60px;
-    opacity: .5
+  .manifesto-grain {
+    right: -28%;
+    opacity: .55
   }
   .manifesto-bottom {
     margin-top: 30px
@@ -2189,8 +2253,7 @@ button svg,a svg {
   }
   .manifesto-bottom>span:last-child {
     font-size: 10px;
-    letter-spacing: 1.2px;
-    text-align: right
+    letter-spacing: 1.2px
   }
   .manifesto {
     padding-bottom: 30px
