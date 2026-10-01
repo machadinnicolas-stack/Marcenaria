@@ -47,12 +47,12 @@ for (const [index, source] of sourceFiles.entries()) {
   const full = await sharp(source)
     .rotate()
     .resize(1800, 1800, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 83, effort: 5 })
+    .webp({ quality: 72, effort: 6 })
     .toFile(path.join(outputDirectory, filename));
   const thumb = await sharp(source)
     .rotate()
     .resize(700, 700, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 78, effort: 5 })
+    .webp({ quality: 68, effort: 6 })
     .toFile(path.join(outputDirectory, thumbFilename));
 
   manifest.push({

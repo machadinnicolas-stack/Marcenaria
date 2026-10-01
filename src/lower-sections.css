@@ -135,7 +135,7 @@
 .ls-step p {
   font-size: 14px;
   line-height: 1.85;
-  color: #555657;
+  color: #343637;
   max-width: 240px;
   margin: 0
 }
@@ -244,7 +244,7 @@
 }
 
 .ls-contact .ls-eyebrow {
-  color: #d39d82
+  color: var(--accent)
 }
 
 .ls-contact h2 {
@@ -259,7 +259,7 @@
 .ls-contact h2 em {
   font-family: Georgia,'Times New Roman',serif;
   font-weight: 400;
-  color: #c78260
+  color: var(--accent)
 }
 
 .ls-contact-content>p:not(.ls-eyebrow) {
@@ -313,7 +313,7 @@
   height: 680px;
   transform: translateY(-42%) rotate(-13deg);
   opacity: .5;
-  color: #ca8968;
+  color: var(--accent);
   pointer-events: none
 }
 
@@ -336,7 +336,7 @@
   position: absolute;
   inset: 0 clamp(24px,5vw,80px) auto;
   height: 1px;
-  background: #e0baa725
+  background: #e8b92325
 }
 
 .ls-footer {
@@ -369,7 +369,7 @@
 }
 
 .ls-brand-dot {
-  color: #bf7048
+  color: var(--accent-deep)
 }
 
 .ls-brand small {
@@ -411,7 +411,14 @@
 }
 
 .ls-footer-nav a:hover,.ls-footer-bottom a:hover {
-  color: #a35c39
+  color: var(--accent-deep)
+}
+
+.ls-footer-area {
+  margin: 0 0 24px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #8a8987
 }
 
 .ls-footer-bottom {
@@ -426,8 +433,13 @@
   color: #77726d
 }
 
-.ls-faq-trigger:focus-visible,.ls-contact-button:focus-visible,.ls-footer a:focus-visible {
-  outline: 2px solid #bf7048;
+.ls-faq-trigger:focus-visible,.ls-footer a:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 6px
+}
+
+.ls-contact-button:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 6px
 }
 
@@ -599,11 +611,6 @@
     gap: 12px 20px;
     font-size: 11px;
     padding-block: 22px
-  }
-  .ls-footer-bottom>span:nth-child(2) {
-    order: 3;
-    width: 100%;
-    font-size: 11px
   }
   .ls-footer-bottom>a {
     margin-left: auto

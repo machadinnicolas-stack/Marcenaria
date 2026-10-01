@@ -26,7 +26,7 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #d98a64
+  color: var(--accent)
 }
 
 .pp-eyebrow>span {
@@ -45,7 +45,7 @@
 
 .pp-copy h2 em {
   font-style: normal;
-  color: #d98a64
+  color: var(--accent)
 }
 
 .pp-intro {
@@ -93,13 +93,13 @@
 .pp-control input[type=range]::-webkit-slider-runnable-track {
   height: 3px;
   border-radius: 3px;
-  background: linear-gradient(90deg,#d98a64 var(--fill),#ffffff2e var(--fill))
+  background: linear-gradient(90deg,var(--accent) var(--fill),#ffffff2e var(--fill))
 }
 
 .pp-control input[type=range]::-moz-range-track {
   height: 3px;
   border-radius: 3px;
-  background: linear-gradient(90deg,#d98a64 var(--fill),#ffffff2e var(--fill))
+  background: linear-gradient(90deg,var(--accent) var(--fill),#ffffff2e var(--fill))
 }
 
 .pp-control input[type=range]::-webkit-slider-thumb {
@@ -110,7 +110,7 @@
   border: 3px solid #212324;
   border-radius: 50%;
   background: #f4f4f3;
-  box-shadow: 0 0 0 1px #d98a64,0 4px 10px #0000008c
+  box-shadow: 0 0 0 1px var(--accent),0 4px 10px #0000008c
 }
 
 .pp-control input[type=range]::-moz-range-thumb {
@@ -119,11 +119,11 @@
   border: 3px solid #212324;
   border-radius: 50%;
   background: #f4f4f3;
-  box-shadow: 0 0 0 1px #d98a64,0 4px 10px #0000008c
+  box-shadow: 0 0 0 1px var(--accent),0 4px 10px #0000008c
 }
 
 .pp-control input[type=range]:focus-visible {
-  outline: 2px solid #d98a64;
+  outline: 2px solid var(--accent);
   outline-offset: 6px;
   border-radius: 4px
 }
@@ -202,7 +202,7 @@
 }
 
 .pp-dim-accent {
-  stroke: #d98a64
+  stroke: var(--accent)
 }
 
 .pp-beam {
@@ -224,7 +224,7 @@
 }
 
 .pp-label-accent {
-  fill: #d98a64;
+  fill: var(--accent);
   font-size: 12px
 }
 

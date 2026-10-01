@@ -1,0 +1,96 @@
+.sec-section {
+  position: relative;
+  background: #212324;
+  color: #edeceb;
+  padding: clamp(96px, 10vw, 150px) max(5.55vw, 24px);
+  overflow: hidden
+}
+
+.sec-layout {
+  position: relative;
+  z-index: 1;
+  max-width: 1422px;
+  margin: 0 auto
+}
+
+.sec-intro {
+  max-width: 720px
+}
+
+.sec-intro h2 {
+  font-size: clamp(37px, 4.15vw, 64px);
+  line-height: 1.07;
+  letter-spacing: -2.8px;
+  margin-top: 26px
+}
+
+.sec-description {
+  margin-top: 26px;
+  max-width: 560px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #c6c5c3
+}
+
+.sec-quote {
+  margin: 64px 0 60px;
+  padding-left: 28px;
+  border-left: 2px solid var(--accent);
+  max-width: 760px
+}
+
+.sec-quote p {
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  font-style: italic;
+  color: #f4f4f3
+}
+
+.sec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #35373a;
+  border: 1px solid #35373a
+}
+
+.sec-card {
+  background: #212324;
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px
+}
+
+.sec-card svg {
+  color: var(--accent)
+}
+
+.sec-card h3 {
+  font-size: 17px;
+  letter-spacing: -0.3px
+}
+
+.sec-card p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #a7a6a4
+}
+
+@media (max-width: 1000px) {
+  .sec-grid {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
+
+@media (max-width: 620px) {
+  .sec-grid {
+    grid-template-columns: 1fr
+  }
+  .sec-quote {
+    margin: 48px 0 44px
+  }
+}

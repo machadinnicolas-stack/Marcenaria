@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useId } from 'react';
 import { ArrowUpRight, ArrowRight, ArrowDown, Plus, X, Menu, ChevronLeft, ChevronRight, Check, Copy, MessageCircle } from 'lucide-react';
 import LowerSections from './LowerSections.jsx';
-import FinishExperience from './FinishExperience.jsx';
+import SecuritySection from './SecuritySection.jsx';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from './gsap.js';
 import { TrussDrawing, TapeMeasure } from './Steel.jsx';
 import FinishSimulator from './FinishSimulator.jsx';
@@ -11,7 +11,7 @@ const photo = (n, thumb = false) => `/images/image-${String(n).padStart(2, '0')}
 
 function Brand({ footer = false }) {
   return <a className={`brand ${footer ? 'brand-footer' : ''}`} href="#inicio" aria-label="Âmago Serralheria, início">
-    <svg viewBox="0 0 50 50" fill="none" aria-hidden="true"><path d="M7 41V18L25 8l18 10v23M17 41V24l8-4 8 4v17M7 32h10m16 0h10" stroke="currentColor" strokeWidth="1.6" /></svg>
+    <img src="/images/logo.svg" alt="" aria-hidden="true" className="brand-mark" width="44" height="44" />
     <span><strong>âmago<span className="brand-dot">.</span></strong><small>SERRALHERIA</small></span>
   </a>;
 }
@@ -131,7 +131,6 @@ function ContactModal({ onClose, prefill }) {
         <label htmlFor={`${id}-idea`}>Conte um pouco da sua ideia</label><textarea id={`${id}-idea`} name="idea" required minLength={10} maxLength={1500} rows={3} placeholder="O que você gostaria de criar no seu espaço?" defaultValue={prefill ?? ''} />
         <button type="submit" className="button button-forest">Preparar meu projeto <ArrowUpRight size={18} /></button>
       </form>}
-      <p className="demo-note">Esta é uma demonstração. Nenhum dado é enviado ou armazenado.</p>
     </div>
   </div>;
 }
@@ -213,36 +212,50 @@ export default function App() {
   const [galleryIndex, setGalleryIndex] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  const [nearClosing, setNearClosing] = useState(false);
   const [contactPrefill, setContactPrefill] = useState(null);
   const contactClose = useRef(() => setContactOpen(false)).current;
   const galleryClose = useRef(() => setGalleryIndex(null)).current;
+  const closingTopRef = useRef(Infinity);
   const openContact = () => { setMenuOpen(false); setContactPrefill(null); setContactOpen(true); };
   const openContactWith = (measures) => { setContactPrefill(measures); setContactOpen(true); };
   useEffect(() => startSmoothScroll(), []);
   useEffect(() => {
-    const handler = () => { setScrolled(window.scrollY > 25); setPastHero(window.scrollY > window.innerHeight * 0.6); };
-    handler(); window.addEventListener('scroll', handler, {passive:true});
+    // Hides the floating CTA from the process section onward (process, planner, FAQ,
+    // contact, footer): the fixed button was overlapping the last process step's text,
+    // the planner's plan caption, and opened FAQ answers on mobile; those later sections
+    // already have their own CTA, so nothing is lost by hiding it there.
+    const updateClosingTop = () => { closingTopRef.current = document.getElementById('processo')?.offsetTop ?? Infinity; };
+    const handler = () => {
+      setScrolled(window.scrollY > 25);
+      setPastHero(window.scrollY > window.innerHeight * 0.6);
+      setNearClosing(window.scrollY + window.innerHeight * 0.5 > closingTopRef.current);
+    };
+    updateClosingTop();
+    handler();
+    window.addEventListener('scroll', handler, {passive:true});
+    window.addEventListener('resize', updateClosingTop);
     const elements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }), {threshold:0.12});
     elements.forEach(element => {element.classList.add('reveal-ready'); observer.observe(element);});
-    return () => { window.removeEventListener('scroll', handler); observer.disconnect(); };
+    return () => { window.removeEventListener('scroll', handler); window.removeEventListener('resize', updateClosingTop); observer.disconnect(); };
   }, []);
   useEffect(() => { const close = (e) => {if(e.key === 'Escape') setMenuOpen(false);}; window.addEventListener('keydown', close); return () => window.removeEventListener('keydown', close); }, []);
   return <>
     <a href="#conteudo" className="skip-link">Ir para o conteúdo</a>
     <TapeMeasure />
-    <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><div className="header-inner"><Brand /><nav className={menuOpen ? 'nav open' : 'nav'} id="main-nav" aria-label="Navegação principal"><a href="#projetos" onClick={() => setMenuOpen(false)}>Projetos</a><a href="#servicos" onClick={() => setMenuOpen(false)}>O que fazemos</a><a href="#processo" onClick={() => setMenuOpen(false)}>Nosso processo</a><a href="#duvidas" onClick={() => setMenuOpen(false)}>Dúvidas</a><button className="nav-mobile-contact" onClick={openContact}>Vamos conversar <ArrowUpRight size={16} /></button></nav><button className="header-cta" onClick={openContact}>Vamos conversar <ArrowUpRight size={16} /></button><button className="menu-button" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button></div></header>
+    <header className={`header ${scrolled ? 'header-scrolled' : ''}`}><div className="header-inner"><Brand /><nav className={menuOpen ? 'nav open' : 'nav'} id="main-nav" aria-label="Navegação principal"><a href="#projetos" onClick={() => setMenuOpen(false)}>Projetos</a><a href="#servicos" onClick={() => setMenuOpen(false)}>O que fazemos</a><a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a><a href="#processo" onClick={() => setMenuOpen(false)}>Nosso processo</a><a href="#duvidas" onClick={() => setMenuOpen(false)}>Dúvidas</a><button className="nav-mobile-contact" onClick={openContact}>Vamos conversar <ArrowUpRight size={16} /></button></nav><button className="header-cta" onClick={openContact}>Vamos conversar <ArrowUpRight size={16} /></button><button className="menu-button" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} aria-controls="main-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button></div></header>
     <main id="conteudo">
-      <section className={`hero ${pastHero ? 'hero-offscreen' : ''}`} id="inicio"><div className="hero-grain" /><div className="slat-ceiling" aria-hidden="true">{Array.from({length:40},(_,i)=><i key={i} style={{'--i':i}} />)}</div><div className="hero-inner"><div className="hero-copy"><span className="eyebrow hero-eyebrow"><span className="status-dot" /> ESTRUTURAS SOB MEDIDA.</span><h1>Seu espaço,<br />na sua<br /><span>essência.</span></h1><p>Transformamos ideias em estruturas que acolhem.<br className="desktop-break" /> Serralheria pensada para a sua casa — e para a vida que acontece nela.</p><div className="hero-actions"><a className="button button-wood" href="#projetos">Veja os projetos <ArrowUpRight size={19} /></a><button className="hero-text-link" onClick={openContact}>Imagine o seu <ArrowRight size={17} /></button></div></div><div className="hero-art"><div className="hero-photo-wrap"><img className="hero-photo" src={photo(4)} width="1350" height="1800" alt="Pergolado em aço preto sobre uma área gourmet" fetchPriority="high" /><div className="hero-photo-overlay" /><span className="hero-photo-label">ESPAÇOS PARA VIVER BEM</span><button className="hero-photo-button" aria-label="Ampliar foto do pergolado" onClick={() => setGalleryIndex(0)}><ArrowUpRight size={25} /></button><div className="hero-photo-caption"><span>Forma. Função.</span><strong>E um pouco de você.</strong></div></div><div className="wood-sample"><img src={photo(22,true)} width="525" height="700" alt="Detalhe de escada caracol em aço" /><span>Detalhes que<br />sustentam.</span><svg viewBox="0 0 38 38" fill="none" aria-hidden="true"><path d="M7 30V8h24v22H16V17h6v13" stroke="currentColor" strokeWidth="1" /></svg></div><div className="hero-side-label">DESENHO ATEMPORAL · AÇO SOB MEDIDA</div></div><div className="hero-bottom"><a href="#servicos"><span className="scroll-circle"><ArrowDown size={15} /></span>Conheça a Âmago</a><span>Feito para o seu espaço.<br /><strong>Pensado em cada detalhe.</strong></span><span className="hero-bottom-index">01 <i>/</i> A ESSÊNCIA</span></div></div></section>
+      <section className={`hero ${pastHero ? 'hero-offscreen' : ''}`} id="inicio"><div className="hero-grain" /><div className="slat-ceiling" aria-hidden="true">{Array.from({length:40},(_,i)=><i key={i} style={{'--i':i}} />)}</div><div className="hero-inner"><div className="hero-copy"><span className="eyebrow hero-eyebrow"><span className="status-dot" /> ESTRUTURAS SOB MEDIDA.</span><h1>Seu espaço,<br />na sua<br /><span>essência.</span></h1><p>Transformamos ideias em estruturas que acolhem.<br className="desktop-break" /> Serralheria pensada para a sua casa — e para a vida que acontece nela.</p><div className="hero-actions"><a className="button button-accent" href="#projetos">Veja os projetos <ArrowUpRight size={19} /></a><button className="hero-text-link" onClick={openContact}>Imagine o seu <ArrowRight size={17} /></button></div></div><div className="hero-art"><div className="hero-photo-wrap"><img className="hero-photo" src={photo(4)} width="1350" height="1800" alt="Pergolado em aço preto sobre uma área gourmet" fetchPriority="high" /><div className="hero-photo-overlay" /><span className="hero-photo-label">ESPAÇOS PARA VIVER BEM</span><button className="hero-photo-button" aria-label="Ampliar foto do pergolado" onClick={() => setGalleryIndex(0)}><ArrowUpRight size={25} /></button><div className="hero-photo-caption"><span>Forma. Função.</span><strong>E um pouco de você.</strong></div></div><div className="wood-sample"><img src={photo(22,true)} width="525" height="700" alt="Detalhe de escada caracol em aço" /><span>Detalhes que<br />sustentam.</span><svg viewBox="0 0 38 38" fill="none" aria-hidden="true"><path d="M7 30V8h24v22H16V17h6v13" stroke="currentColor" strokeWidth="1" /></svg></div><div className="hero-side-label">DESENHO ATEMPORAL · AÇO SOB MEDIDA</div></div><div className="hero-bottom"><a href="#servicos"><span className="scroll-circle"><ArrowDown size={15} /></span>Conheça a Âmago</a><span>Feito para o seu espaço.<br /><strong>Pensado em cada detalhe.</strong></span><span className="hero-bottom-index">01 <i>/</i> A ESSÊNCIA</span></div></div></section>
       <div className="values-strip" aria-label="Feito sob medida, precisão no detalhe, aço que dura e acabamento que permanece"><span><span className="strip-star">✳</span> Feito sob medida</span><span><span className="strip-star">✳</span> Precisão no detalhe</span><span><span className="strip-star">✳</span> Aço que dura</span><span className="strip-last"><span className="strip-star">✳</span> Acabamento que permanece</span></div>
       <ServiceExplorer onContact={openContact} />
-      <FinishExperience />
+      <SecuritySection />
       <FinishSimulator />
       <ProjectGallery onOpen={setGalleryIndex} />
       <section className="manifesto section-pad"><TrussDrawing className="manifesto-truss" /><span className="eyebrow">O QUE NOS MOVE</span><p className="reveal">Uma casa é feita de histórias.<br />A nossa parte é dar a elas<br /><span>um lugar especial.</span></p><div className="manifesto-bottom"><span className="manifesto-mark">â.</span><span>MATÉRIA, CUIDADO E INTENÇÃO.<br />ESSA É A ESSÊNCIA DA ÂMAGO.</span></div></section>
       <LowerSections onContact={openContact} onUseMeasures={openContactWith} />
     </main>
-    <button className={`floating-contact ${pastHero ? 'floating-contact-visible' : ''}`} onClick={openContact} aria-label="Conversar sobre um projeto"><span>Seu projeto começa aqui</span><ArrowUpRight size={23} /></button>
+    <button className={`floating-contact ${pastHero && !nearClosing ? 'floating-contact-visible' : ''}`} onClick={openContact} aria-label="Conversar sobre um projeto"><span>Seu projeto começa aqui</span><ArrowUpRight size={23} /></button>
     {galleryIndex !== null && <Lightbox index={galleryIndex} onClose={galleryClose} />}
     {contactOpen && <ContactModal onClose={contactClose} prefill={contactPrefill} />}
   </>;

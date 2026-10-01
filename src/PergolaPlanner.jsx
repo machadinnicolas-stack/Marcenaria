@@ -115,7 +115,7 @@ export default function PergolaPlanner({ onUseMeasures }) {
             <div><dt>Pilares estimados</dt><dd>{pillars}</dd></div>
           </dl>
 
-          <button type="button" className="button button-wood pp-cta" onClick={() => onUseMeasures(summary)}>
+          <button type="button" className="button button-accent pp-cta" onClick={() => onUseMeasures(summary)}>
             Levar estas medidas para a conversa <ArrowUpRight size={19} />
           </button>
           <p className="pp-note">Estimativa ilustrativa. Perfis, vãos e posição dos pilares são definidos no projeto estrutural.</p>

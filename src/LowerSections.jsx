@@ -4,6 +4,7 @@ import './lower-sections.css';
 import { gsap, useGSAP, prefersReducedMotion } from './gsap.js';
 import { SheetEdge, TrussDrawing } from './Steel.jsx';
 import PergolaPlanner from './PergolaPlanner.jsx';
+import Testimonials from './Testimonials.jsx';
 
 const steps = [
   {
@@ -125,6 +126,8 @@ export default function LowerSections({ onContact, onUseMeasures }) {
         </div>
       </section>
 
+      <Testimonials />
+
       <section className="ls-contact" id="contato" aria-labelledby="ls-contact-heading">
         <SheetEdge fill="#f6f6f5" />
         <TrussDrawing className="ls-contact-grain" start="top 80%" end="bottom 85%" />
@@ -142,9 +145,10 @@ export default function LowerSections({ onContact, onUseMeasures }) {
           <div className="ls-footer-main">
             <a className="ls-brand" href="#" aria-label="Âmago Serralheria, voltar ao início"><span>âmago<span className="ls-brand-dot">.</span></span><small>SERRALHERIA</small></a>
             <p>Aço, precisão<br />e um novo jeito de habitar.</p>
-            <nav className="ls-footer-nav" aria-label="Navegação do rodapé"><a href="#processo">Nosso processo</a><a href="#duvidas">Dúvidas frequentes</a><a href="#contato">Vamos conversar <ArrowUpRight size={14} aria-hidden="true" /></a></nav>
+            <nav className="ls-footer-nav" aria-label="Navegação do rodapé"><a href="#sobre">Sobre</a><a href="#processo">Nosso processo</a><a href="#duvidas">Dúvidas frequentes</a><a href="#contato">Vamos conversar <ArrowUpRight size={14} aria-hidden="true" /></a></nav>
           </div>
-          <div className="ls-footer-bottom"><span>© {new Date().getFullYear()} Âmago Serralheria</span><span>Apresentação conceitual · marca fictícia</span><a href="#">Voltar ao topo <ArrowUpRight size={14} aria-hidden="true" /></a></div>
+          <p className="ls-footer-area">Atendendo Atibaia, Bom Jesus dos Perdões, Piracaia, Jarinu e Mairiporã.</p>
+          <div className="ls-footer-bottom"><span>© {new Date().getFullYear()} Âmago Serralheria</span><a href="#">Voltar ao topo <ArrowUpRight size={14} aria-hidden="true" /></a></div>
         </div>
       </footer>
     </>
