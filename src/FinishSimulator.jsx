@@ -3,7 +3,10 @@ import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from './gsap.js';
 import './finish-simulator.css';
 
 const PHOTO = '/images/image-02.webp';
-const WORK_WIDTH = 900;
+const MOBILE_WORK_WIDTH = 480;
+const DESKTOP_WORK_WIDTH = 720;
+
+const workWidth = () => window.matchMedia('(max-width: 700px)').matches ? MOBILE_WORK_WIDTH : DESKTOP_WORK_WIDTH;
 
 const FINISHES = [
   { id: 'grafite', name: 'Grafite', dark: [52, 56, 60], light: [128, 134, 140] },
@@ -19,7 +22,7 @@ const smooth = (a, b, x) => {
 // Finds the painted steel (dark, unsaturated pixels above the wall line) and records each pixel's relative
 // brightness, so a new paint colour keeps the photo's highlights, edges and shading.
 function analyse(image) {
-  const width = WORK_WIDTH;
+  const width = Math.min(image.naturalWidth, workWidth());
   const height = Math.round((width * image.naturalHeight) / image.naturalWidth);
   const canvas = document.createElement('canvas');
   canvas.width = width;
