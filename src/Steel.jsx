@@ -94,6 +94,7 @@ export function TapeMeasure() {
   const ref = useRef(null);
 
   useGSAP(() => {
+    if (prefersReducedMotion() || window.matchMedia('(max-width: 700px), (pointer: coarse)').matches) return;
     gsap.fromTo(ref.current, { '--tape': 0 }, { '--tape': 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.4 } });
   }, { scope: ref });
 

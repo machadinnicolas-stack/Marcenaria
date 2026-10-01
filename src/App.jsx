@@ -5,7 +5,6 @@ import SecuritySection from './SecuritySection.jsx';
 import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion } from './gsap.js';
 import { TrussDrawing, TapeMeasure } from './Steel.jsx';
 import FinishSimulator from './FinishSimulator.jsx';
-import { startSmoothScroll, pauseSmoothScroll, resumeSmoothScroll } from './smoothScroll.js';
 
 const photo = (n, thumb = false) => `/images/image-${String(n).padStart(2, '0')}${thumb ? '-thumb' : ''}.webp`;
 
@@ -21,7 +20,6 @@ function useModalFocus(ref, onClose) {
     const oldFocus = document.activeElement;
     const oldOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    pauseSmoothScroll();
     const timer = window.setTimeout(() => ref.current?.querySelector('button, input, select, textarea, [tabindex="0"]')?.focus(), 30);
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose();
@@ -33,7 +31,7 @@ function useModalFocus(ref, onClose) {
       }
     };
     window.addEventListener('keydown', handleKey);
-    return () => { clearTimeout(timer); document.body.style.overflow = oldOverflow; resumeSmoothScroll(); window.removeEventListener('keydown', handleKey); oldFocus?.focus(); };
+    return () => { clearTimeout(timer); document.body.style.overflow = oldOverflow; window.removeEventListener('keydown', handleKey); oldFocus?.focus(); };
   }, [ref, onClose]);
 }
 
@@ -97,7 +95,7 @@ function Lightbox({ index, onClose }) {
     if (Math.abs(dx) > 50) advance(dx < 0 ? 1 : -1);
   };
   const item = projects[current];
-  return <div className="modal-backdrop lightbox" data-lenis-prevent onClick={(e) => e.target === e.currentTarget && onClose()}>
+  return <div className="modal-backdrop lightbox" onClick={(e) => e.target === e.currentTarget && onClose()}>
     <div className="lightbox-dialog" ref={ref} role="dialog" aria-modal="true" aria-label="Galeria de projetos">
       <div className="lightbox-top"><span>ÂMAGO / ACERVO DE PROJETOS</span><button className="icon-button" onClick={onClose} aria-label="Fechar galeria"><X /></button></div>
       <div className="lightbox-image" onPointerDown={(e) => { swipeStart.current = e.clientX; }} onPointerUp={onSwipeEnd} onPointerCancel={() => { swipeStart.current = null; }}><button className="icon-button gallery-prev" onClick={() => advance(-1)} aria-label="Foto anterior"><ChevronLeft /></button><img key={current} className={direction > 0 ? 'lb-from-right' : direction < 0 ? 'lb-from-left' : ''} src={photo(item.n)} alt={`${item.detail} — fotografia ${item.n} do acervo`} draggable="false" /><button className="icon-button gallery-next" onClick={() => advance(1)} aria-label="Próxima foto"><ChevronRight /></button></div>
@@ -121,7 +119,7 @@ function ContactModal({ onClose, prefill }) {
     try { await navigator.clipboard.writeText(summary); setCopied(true); }
     catch { summaryRef.current?.focus(); summaryRef.current?.select(); }
   };
-  return <div className="modal-backdrop" data-lenis-prevent onClick={(e) => e.target === e.currentTarget && onClose()}>
+  return <div className="modal-backdrop" onClick={(e) => e.target === e.currentTarget && onClose()}>
     <div className="contact-dialog" role="dialog" aria-modal="true" aria-labelledby={`${id}-title`} ref={ref}>
       <button className="icon-button modal-close" aria-label="Fechar formulário" onClick={onClose}><X /></button>
       <span className="eyebrow">VAMOS TIRAR DO PAPEL</span><h2 id={`${id}-title`}>Todo projeto começa<br />com uma boa conversa.</h2>
@@ -192,7 +190,6 @@ function ProjectGallery({ onOpen }) {
         .set(img, { clearProps: 'transition,transform,scale' });
     }));
     ScrollTrigger.batch(section.querySelectorAll('.project-card'), { start: 'top 88%', once: true, onEnter: cut });
-    ScrollTrigger.refresh();
     return () => {
       section.classList.remove('plate-on');
       section.querySelectorAll('.cutting').forEach((card) => card.classList.remove('cutting'));
@@ -219,7 +216,6 @@ export default function App() {
   const closingTopRef = useRef(Infinity);
   const openContact = () => { setMenuOpen(false); setContactPrefill(null); setContactOpen(true); };
   const openContactWith = (measures) => { setContactPrefill(measures); setContactOpen(true); };
-  useEffect(() => startSmoothScroll(), []);
   useEffect(() => {
     // Hides the floating CTA from the process section onward (process, planner, FAQ,
     // contact, footer): the fixed button was overlapping the last process step's text,

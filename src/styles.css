@@ -2568,6 +2568,53 @@ button svg,a svg {
   }
 }
 
+@supports (content-visibility:auto) {
+  .services,
+  .sec-section,
+  .fs-section,
+  .projects,
+  .manifesto,
+  .ls-process,
+  .pp-section,
+  .ls-faq,
+  .ts-section,
+  .ls-contact,
+  .ls-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px
+  }
+}
+
+@media(max-width:700px), (hover:none) and (pointer:coarse) {
+  .slat-ceiling {
+    animation: mobile-ceiling-in 600ms var(--ease) both
+  }
+  .slat-ceiling i {
+    animation: none
+  }
+  .slat-ceiling i:nth-child(even) {
+    display: none
+  }
+  .slat-ceiling i::after {
+    display: none;
+    animation: none
+  }
+  .hero h1>span {
+    animation: none;
+    background-position: 45% 0
+  }
+  .tape {
+    display: none
+  }
+}
+
+@keyframes mobile-ceiling-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) perspective(var(--ceil-p)) rotateX(var(--ceil-a)) translateY(-10px)
+  }
+}
+
 @media(prefers-reduced-motion:reduce) {
   html {
     scroll-behavior: auto
